@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumb from '../../components/Breadcrumb.astro';
+import HealthCostCalculator from '../../components/HealthCostCalculator.astro';
+import { gkv } from '../../data/rates';
+---
+<BaseLayout
+  title={`Public health insurance calculator for freelancers (${gkv.year})`}
+  description="Estimate your monthly public health and long-term care insurance contribution as a self-employed member in Germany."
+  current="calculators"
+>
+  <div class="container-page py-10">
+    <div class="max-w-190">
+      <Breadcrumb items={[{ href: '/calculators', label: 'Calculators' }]} />
+      <h1 class="m-0 mb-3 text-[34px] leading-tight font-bold tracking-tight sm:text-[42px]">
+        Public health insurance calculator for freelancers
+      </h1>
+      <p class="m-0 text-lg text-muted">
+        Uses {gkv.year} rates. Want to compare with private insurance? Read
+        <a href="/health-insurance/public-vs-private">public vs. private health insurance</a>.
+      </p>
+      <HealthCostCalculator />
+    </div>
+  </div>
+</BaseLayout>

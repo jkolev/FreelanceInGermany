@@ -1,0 +1,39 @@
+---
+import { site } from '../data/site';
+const action = site.newsletterAction || undefined;
+---
+<section class="container-page py-14">
+  <div class="flex flex-wrap items-center gap-8 rounded-card bg-band p-10 text-white">
+    <div class="min-w-0 flex-[999_1_420px]">
+      <h2 class="m-0 mb-2 text-[28px] leading-tight font-bold tracking-[-0.02em] text-white">
+        Get the free German invoice template
+      </h2>
+      <p class="m-0 text-base text-band-ink">
+        Plus one short email a month with deadlines and rule changes for freelancers. Unsubscribe anytime.
+      </p>
+    </div>
+    <form method="post" action={action} class="flex min-w-0 flex-[1_1_320px] flex-wrap gap-2.5">
+      <label for="newsletter-email" class="sr-only">Email address</label>
+      <input
+        id="newsletter-email"
+        name="email"
+        type="email"
+        required
+        autocomplete="email"
+        placeholder="you@example.com"
+        class="min-h-12 min-w-0 flex-[1_1_200px] rounded-lg border border-band-line bg-band-field px-4 text-base text-white placeholder:text-band-ink/70"
+      />
+      <button
+        type="submit"
+        class="min-h-12 cursor-pointer rounded-lg border-0 bg-white px-5 text-base font-semibold text-[#0f2e2e] hover:bg-[#e8f2f1]"
+        disabled={!action}
+        title={action ? undefined : 'Set site.newsletterAction in src/data/site.ts'}
+      >
+        Send it to me
+      </button>
+      <p class="m-0 w-full text-xs text-band-ink">
+        We use your email only for this newsletter. See our <a href="/privacy" class="text-white underline">privacy policy</a>.
+      </p>
+    </form>
+  </div>
+</section>

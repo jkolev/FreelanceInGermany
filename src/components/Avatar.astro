@@ -1,0 +1,22 @@
+---
+import { Image } from 'astro:assets';
+import { site } from '../data/site';
+interface Props {
+  size: 32 | 56 | 96;
+}
+const { size } = Astro.props;
+const { name, photo } = site.author;
+const sizeClass = { 32: 'size-8 text-[13px]', 56: 'size-14 text-xl', 96: 'size-24 text-3xl' }[size];
+---
+{
+  photo ? (
+    <Image src={photo} alt={name} width={size * 2} height={size * 2} class:list={['shrink-0 rounded-full object-cover', sizeClass]} />
+  ) : (
+    <span
+      class:list={['flex shrink-0 items-center justify-center rounded-full bg-accent-tint font-semibold text-accent-ink', sizeClass]}
+      aria-hidden="true"
+    >
+      {name.charAt(0)}
+    </span>
+  )
+}

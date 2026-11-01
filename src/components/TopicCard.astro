@@ -1,0 +1,16 @@
+---
+import Icon from './Icon.astro';
+import type { Hub } from '../data/site';
+interface Props {
+  hub: Hub;
+}
+const { hub } = Astro.props;
+---
+<a
+  href={`/${hub.id}`}
+  class="card flex flex-col gap-2.5 p-[22px] text-ink no-underline transition-shadow hover:border-accent-line hover:text-ink hover:shadow-sm"
+>
+  <Icon name={hub.icon} size={28} class="text-accent" />
+  <span class="text-[17px] font-semibold">{hub.title}</span>
+  <span class="text-sm leading-normal text-muted">{hub.description}</span>
+</a>

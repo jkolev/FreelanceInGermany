@@ -1,0 +1,75 @@
+---
+import { Font } from 'astro:assets';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
+import { cleanPath } from '../lib/articles';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  /** Header nav item to highlight */
+  current?: string;
+  /** Extra structured data (JSON-LD objects) */
+  jsonLd?: Record<string, unknown>[];
+  noindex?: boolean;
+  ogType?: 'website' | 'article';
+}
+
+const {
+  title,
+  description = site.description,
+  current,
+  jsonLd = [],
+  noindex = false,
+  ogType = 'website',
+} = Astro.props;
+
+const fullTitle = title ? `${title} | ${site.name}` : `${site.name}: ${site.tagline}`;
+const canonical = new URL(cleanPath(Astro.url.pathname), Astro.site);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta name="color-scheme" content="light dark" />
+    <!-- Apply a saved light/dark choice before the page paints, so there is no flash -->
+    <script is:inline>
+      try {
+        const t = localStorage.getItem('theme');
+        if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+      } catch (e) {}
+    </script>
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={title ?? site.name} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="generator" content={Astro.generator} />
+    <Font cssVariable="--font-inter" preload />
+    {jsonLd.map((data) => <script type="application/ld+json" set:html={JSON.stringify(data)} />)}
+    <slot name="head" />
+  </head>
+  <body class="flex min-h-screen flex-col text-lg leading-relaxed">
+    <a
+      href="#main"
+      class="sr-only rounded-lg bg-accent px-4 py-2 text-on-accent focus:not-sr-only focus:absolute focus:top-3 focus:left-3"
+      >Skip to content</a
+    >
+    <Header current={current} />
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

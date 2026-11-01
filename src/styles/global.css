@@ -1,0 +1,289 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/*
+ * Design tokens. Components use the semantic names (bg-surface, text-muted,
+ * text-accent …); light and dark values live in the variables below.
+ */
+:root {
+  --c-page: #fafaf7;
+  --c-surface: #ffffff;
+  --c-subtle: #f5f5f1;
+  --c-chip: #eef0ea;
+  --c-ink: #1c2526;
+  --c-ink-2: #2e3a40;
+  --c-muted: #55606a;
+  --c-line: #e4e4de;
+  --c-line-strong: #c9ccc4;
+  --c-accent: #0f6e6e;
+  --c-accent-hover: #0a5252;
+  --c-accent-soft: #f2f7f6;
+  --c-accent-line: #d5e5e2;
+  --c-accent-tint: #e3f1ef;
+  --c-accent-ink: #0a5252;
+  --c-on-accent: #ffffff;
+  --c-warn-bg: #fff6e3;
+  --c-warn-line: #ebc877;
+  --c-warn-ink: #5c3d00;
+  --c-warn-icon: #8a5a00;
+  --c-band: #0f2e2e;
+  --c-band-ink: #c8dcda;
+  --c-band-field: #163a3a;
+  --c-band-line: #3d5e5c;
+}
+
+/*
+ * Theme: light by default. Dark applies when the visitor's device asks for it, unless they picked
+ * light with the header switch; or when they picked dark with the switch (data-theme on <html>).
+ */
+:root {
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    color-scheme: dark;
+    --c-page: #121616;
+    --c-surface: #1a2020;
+    --c-subtle: #1f2626;
+    --c-chip: #232b2b;
+    --c-ink: #e8ecea;
+    --c-ink-2: #d2d9d7;
+    --c-muted: #a3aeac;
+    --c-line: #2c3535;
+    --c-line-strong: #3d4848;
+    --c-accent: #5cc4bd;
+    --c-accent-hover: #7fd6d0;
+    --c-accent-soft: #15292a;
+    --c-accent-line: #234241;
+    --c-accent-tint: #173535;
+    --c-accent-ink: #8fdcd6;
+    --c-on-accent: #0b1f1f;
+    --c-warn-bg: #2a2214;
+    --c-warn-line: #6b5420;
+    --c-warn-ink: #f2d9a0;
+    --c-warn-icon: #e8b44c;
+    --c-band: #0c2424;
+    --c-band-ink: #b4cbc9;
+    --c-band-field: #123030;
+    --c-band-line: #2f4f4d;
+  }
+}
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --c-page: #121616;
+  --c-surface: #1a2020;
+  --c-subtle: #1f2626;
+  --c-chip: #232b2b;
+  --c-ink: #e8ecea;
+  --c-ink-2: #d2d9d7;
+  --c-muted: #a3aeac;
+  --c-line: #2c3535;
+  --c-line-strong: #3d4848;
+  --c-accent: #5cc4bd;
+  --c-accent-hover: #7fd6d0;
+  --c-accent-soft: #15292a;
+  --c-accent-line: #234241;
+  --c-accent-tint: #173535;
+  --c-accent-ink: #8fdcd6;
+  --c-on-accent: #0b1f1f;
+  --c-warn-bg: #2a2214;
+  --c-warn-line: #6b5420;
+  --c-warn-ink: #f2d9a0;
+  --c-warn-icon: #e8b44c;
+  --c-band: #0c2424;
+  --c-band-ink: #b4cbc9;
+  --c-band-field: #123030;
+  --c-band-line: #2f4f4d;
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+
+  --color-page: var(--c-page);
+  --color-surface: var(--c-surface);
+  --color-subtle: var(--c-subtle);
+  --color-chip: var(--c-chip);
+  --color-ink: var(--c-ink);
+  --color-ink-2: var(--c-ink-2);
+  --color-muted: var(--c-muted);
+  --color-line: var(--c-line);
+  --color-line-strong: var(--c-line-strong);
+  --color-accent: var(--c-accent);
+  --color-accent-hover: var(--c-accent-hover);
+  --color-accent-soft: var(--c-accent-soft);
+  --color-accent-line: var(--c-accent-line);
+  --color-accent-tint: var(--c-accent-tint);
+  --color-accent-ink: var(--c-accent-ink);
+  --color-on-accent: var(--c-on-accent);
+  --color-warn-bg: var(--c-warn-bg);
+  --color-warn-line: var(--c-warn-line);
+  --color-warn-ink: var(--c-warn-ink);
+  --color-warn-icon: var(--c-warn-icon);
+  --color-band: var(--c-band);
+  --color-band-ink: var(--c-band-ink);
+  --color-band-field: var(--c-band-field);
+  --color-band-line: var(--c-band-line);
+
+  --radius-card: 14px;
+}
+
+@layer base {
+  html {
+    @apply bg-page text-ink antialiased;
+    font-family: var(--font-sans);
+    scroll-padding-top: 1.5rem;
+  }
+  a {
+    @apply text-accent hover:text-accent-hover;
+  }
+  :focus-visible {
+    outline: 2px solid var(--c-accent);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-[1120px] px-6;
+  }
+  .card {
+    @apply rounded-card border border-line bg-surface;
+  }
+  .btn {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-lg px-6 font-semibold no-underline transition-colors;
+  }
+  .btn-primary {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-lg px-6 font-semibold no-underline transition-colors bg-accent text-on-accent hover:bg-accent-hover hover:text-on-accent;
+  }
+  .btn-secondary {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-lg px-6 font-semibold no-underline transition-colors border border-line-strong bg-surface text-ink hover:border-accent hover:text-ink;
+  }
+  .eyebrow {
+    @apply text-[13px] font-semibold tracking-[0.06em] uppercase;
+  }
+  .pill {
+    @apply inline-block rounded-full px-2.5 py-1 text-xs font-semibold;
+  }
+  .field {
+    @apply min-h-12 w-full rounded-lg border border-line-strong bg-surface px-3.5 text-[17px] text-ink focus:border-accent;
+  }
+}
+
+/* Article typography, tuned to the design tokens */
+.prose-site {
+  --tw-prose-body: var(--c-ink);
+  --tw-prose-headings: var(--c-ink);
+  --tw-prose-links: var(--c-accent);
+  --tw-prose-bold: var(--c-ink);
+  --tw-prose-bullets: var(--c-muted);
+  --tw-prose-counters: var(--c-muted);
+  --tw-prose-hr: var(--c-line);
+  --tw-prose-quotes: var(--c-ink-2);
+  --tw-prose-quote-borders: var(--c-accent-line);
+  --tw-prose-th-borders: var(--c-line);
+  --tw-prose-td-borders: var(--c-line);
+  --tw-prose-code: var(--c-ink);
+  --tw-prose-captions: var(--c-muted);
+}
+.prose-site h2 {
+  @apply mt-12 mb-4 text-[28px] leading-tight tracking-[-0.02em];
+}
+.prose-site h3 {
+  @apply mt-8 text-xl;
+}
+/* Components inside articles manage their own spacing and type */
+.prose-site .not-prose {
+  @apply my-8;
+}
+
+/* Tap-to-reveal German terms: the popover sits under its term where the browser supports anchor positioning,
+   and is centred on screen elsewhere */
+.term-pop {
+  inset: auto;
+  position-area: bottom span-right;
+  position-try-fallbacks: flip-block, flip-inline;
+  margin-top: 6px;
+}
+@supports not (position-area: bottom) {
+  .term-pop {
+    inset: 0;
+    margin: auto;
+    height: fit-content;
+  }
+}
+.term-pop::backdrop {
+  background: transparent;
+}
+
+/* Comparison tables: a table from 640px, stacked cards below (labels come from rehype-table-labels) */
+.cmp table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.cmp th,
+.cmp td {
+  padding: 14px 18px;
+  text-align: left;
+  vertical-align: top;
+}
+.cmp tbody td:first-child {
+  font-weight: 600;
+}
+@media (width >= 640px) {
+  .cmp-box {
+    overflow-x: auto;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius-card);
+    background: var(--c-surface);
+  }
+  .cmp thead tr {
+    background: var(--c-subtle);
+  }
+  .cmp thead th {
+    font-weight: 600;
+    border-bottom: 1px solid var(--c-line);
+  }
+  .cmp tbody tr + tr {
+    border-top: 1px solid var(--c-line);
+  }
+}
+@media (width < 640px) {
+  .cmp thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+  }
+  .cmp table,
+  .cmp tbody,
+  .cmp tr,
+  .cmp td {
+    display: block;
+  }
+  .cmp tr {
+    margin-bottom: 12px;
+    border: 1px solid var(--c-line);
+    border-radius: var(--radius-card);
+    background: var(--c-surface);
+    padding: 6px 0;
+  }
+  .cmp td {
+    padding: 8px 18px;
+  }
+  .cmp td[data-label]::before {
+    content: attr(data-label);
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--c-muted);
+  }
+  .cmp tbody td:first-child {
+    font-size: 17px;
+    border-bottom: 1px solid var(--c-line);
+    padding-bottom: 10px;
+    margin-bottom: 4px;
+  }
+}

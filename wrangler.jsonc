@@ -1,0 +1,25 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "freelance-in-germany",
+  "main": "./worker/index.ts",
+  "compatibility_date": "2026-10-15",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    // Only these paths run the worker; everything else is served as static files
+    "run_worker_first": ["/go/*", "/api/*"]
+  },
+  // Anonymous affiliate click counts (Workers Analytics Engine)
+  "analytics_engine_datasets": [{ "binding": "CLICKS", "dataset": "affiliate_clicks" }],
+  // Contact form: at most 5 messages per minute per visitor
+  "ratelimits": [{ "name": "CONTACT_LIMITER", "namespace_id": "1001", "simple": { "limit": 5, "period": 60 } }],
+  "vars": {
+    "SITE_NAME": "Freelance in Germany",
+    // TODO: your inbox, and a sender address verified in Brevo
+    "CONTACT_TO": "you@example.com",
+    "CONTACT_FROM": "no-reply@example.com"
+  },
+  // Secrets (never in this file): npx wrangler secret put TURNSTILE_SECRET / BREVO_API_KEY
+  "observability": { "enabled": true }
+}

@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { calculators } from '../../data/calculators';
+---
+<BaseLayout title="Calculators" description="Free calculators for freelancers in Germany. Your numbers stay in your browser." current="calculators">
+  <div class="container-page py-12">
+    <h1 class="m-0 mb-3 text-[34px] leading-tight font-bold tracking-[-0.025em] sm:text-[42px]">Calculators</h1>
+    <p class="m-0 mb-8 max-w-2xl text-xl text-muted">Your numbers stay in your browser. Nothing is sent or stored.</p>
+    <div class="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-4">
+      {
+        calculators.map((c) => (
+          <div class="card flex flex-col gap-3 p-6">
+            <span class="pill self-start bg-accent-tint text-accent-ink">{c.topic}</span>
+            <h2 class="m-0 text-[19px] leading-snug font-semibold">{c.title}</h2>
+            <p class="m-0 text-[15px] text-muted">{c.description}</p>
+            {c.href ? (
+              <a href={c.href} class="mt-auto text-[15px] font-semibold">
+                Open calculator
+              </a>
+            ) : (
+              <span class="mt-auto text-[15px] text-muted">Coming soon</span>
+            )}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</BaseLayout>

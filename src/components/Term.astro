@@ -1,0 +1,38 @@
+---
+/**
+ * A German term. Tapping it shows a one-line English meaning (from src/data/glossary.ts).
+ * <Term de="Krankenkasse" />   or with a one-off meaning:   <Term de="Rürup" en="a basic pension plan" />
+ */
+import { glossary, glossaryId } from '../data/glossary';
+import { cleanPath } from '../lib/articles';
+interface Props {
+  de: string;
+  en?: string;
+}
+const { de, en } = Astro.props;
+const entry = glossary[de];
+const meaning = en ?? entry?.en;
+if (!meaning) {
+  throw new Error(`Term "${de}" is not in src/data/glossary.ts. Add it there (or pass en="…").`);
+}
+// Unique per occurrence, so the same term can appear several times on a page
+const count = ((Astro.locals as { termCount?: number }).termCount ?? 0) + 1;
+(Astro.locals as { termCount?: number }).termCount = count;
+const popId = `${glossaryId(de)}-${count}`;
+// Don't link to the guide the reader is already on
+const guide = entry?.href && entry.href !== cleanPath(Astro.url.pathname) ? entry.href : undefined;
+---
+<button
+  type="button"
+  popovertarget={popId}
+  class="term inline cursor-help rounded-md border border-line bg-chip px-1.5 py-0 align-baseline font-[inherit] text-[0.95em] font-semibold text-ink italic decoration-muted decoration-dotted underline-offset-4 hover:border-accent-line hover:underline focus-visible:border-accent"
+  lang="de"
+  aria-label={`${de}: show meaning`}
+>{de}</button><span
+  id={popId}
+  popover
+  class="term-pop m-0 max-w-[min(320px,calc(100vw-32px))] rounded-lg border border-line bg-surface px-3.5 py-2.5 text-[15px] leading-snug font-normal text-ink not-italic shadow-lg"
+  ><span lang="de" class="font-semibold italic">{de}</span>: {meaning}<span class="mt-1 flex gap-4 text-sm"
+    >{guide && <a href={guide}>Read the guide</a>}<a href={`/glossary#${glossaryId(de)}`} class="text-muted">All terms</a></span
+  ></span
+>

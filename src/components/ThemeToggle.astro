@@ -1,0 +1,57 @@
+---
+/**
+ * Light/dark switch. The site follows the device setting until the visitor picks one here;
+ * the choice is remembered in this browser only (localStorage, no cookie).
+ */
+import Icon from './Icon.astro';
+---
+<button
+  type="button"
+  data-theme-toggle
+  class="flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-lg border border-line bg-surface text-ink-2 hover:border-accent-line hover:text-accent"
+  aria-label="Switch to dark theme"
+  title="Switch to dark theme"
+>
+  <Icon name="moon" size={20} class="theme-icon-moon" />
+  <Icon name="sun" size={20} class="theme-icon-sun hidden" />
+</button>
+
+<script>
+  const KEY = 'theme';
+  const root = document.documentElement;
+  const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+  const current = (): 'light' | 'dark' =>
+    (root.dataset.theme as 'light' | 'dark' | undefined) ?? (media.matches ? 'dark' : 'light');
+
+  const paint = () => {
+    const isDark = current() === 'dark';
+    const label = isDark ? 'Switch to light theme' : 'Switch to dark theme';
+    for (const btn of document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]')) {
+      btn.setAttribute('aria-label', label);
+      btn.title = label;
+      btn.querySelector('.theme-icon-moon')?.classList.toggle('hidden', isDark);
+      btn.querySelector('.theme-icon-sun')?.classList.toggle('hidden', !isDark);
+    }
+  };
+
+  for (const btn of document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]')) {
+    btn.addEventListener('click', () => {
+      const next = current() === 'dark' ? 'light' : 'dark';
+      // Picking the device's own setting clears the override, so the site follows the device again
+      const followsDevice = next === (media.matches ? 'dark' : 'light');
+      if (followsDevice) delete root.dataset.theme;
+      else root.dataset.theme = next;
+      try {
+        if (followsDevice) localStorage.removeItem(KEY);
+        else localStorage.setItem(KEY, next);
+      } catch {
+        /* storage blocked: the choice lasts for this page only */
+      }
+      paint();
+    });
+  }
+
+  media.addEventListener('change', paint);
+  paint();
+</script>

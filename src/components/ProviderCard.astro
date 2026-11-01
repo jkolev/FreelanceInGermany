@@ -1,0 +1,19 @@
+---
+import AffiliateLink from './AffiliateLink.astro';
+interface Props {
+  name: string;
+  bestFor: string;
+  link: string;
+  cta?: string;
+  highlight?: boolean;
+}
+const { name, bestFor, link, cta = 'Get a quote', highlight = false } = Astro.props;
+---
+<div class="not-prose card my-3 flex flex-wrap items-center justify-between gap-4 px-[22px] py-5">
+  <div class="min-w-0 flex-[1_1_280px]">
+    <p class="m-0 text-[17px] font-semibold">{name}</p>
+    <p class="m-0 mt-0.5 text-[15px] leading-normal text-muted">Best for: {bestFor}</p>
+    <slot />
+  </div>
+  <AffiliateLink slug={link} variant={highlight ? 'primary' : 'secondary'}>{cta}</AffiliateLink>
+</div>

@@ -1,0 +1,13 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import ContactForm from '../components/ContactForm.astro';
+---
+<PageLayout title="Contact" lead="Questions, corrections or suggestions for a guide? Send a message.">
+  <p>
+    I read every message, but I can’t give personal tax or insurance advice. For that, a tax advisor or licensed broker is
+    the right person.
+  </p>
+  <div class="not-prose mt-8">
+    <ContactForm />
+  </div>
+</PageLayout>

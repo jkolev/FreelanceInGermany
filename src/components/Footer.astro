@@ -1,0 +1,23 @@
+---
+import { site } from '../data/site';
+const year = new Date().getFullYear();
+---
+<footer class="mt-auto border-t border-line bg-surface">
+  <div class="container-page flex flex-wrap justify-between gap-x-8 gap-y-4 py-8 text-sm text-muted">
+    <div class="max-w-xl space-y-2">
+      <p class="m-0">
+        General information, not tax, legal or insurance advice. Some links are affiliate links: if you sign up, we may
+        earn a commission at no cost to you.
+      </p>
+      <p class="m-0">© {year} {site.name}</p>
+    </div>
+    <nav aria-label="Footer" class="flex flex-wrap gap-x-5 gap-y-2">
+      <a href="/about" class="text-muted">About</a>
+      <a href="/how-we-make-money" class="text-muted">How we make money</a>
+      <a href="/glossary" class="text-muted">Glossary</a>
+      <a href="/contact" class="text-muted">Contact</a>
+      <a href="/privacy" class="text-muted">Privacy</a>
+      <a href="/impressum" class="text-muted">Impressum</a>
+    </nav>
+  </div>
+</footer>

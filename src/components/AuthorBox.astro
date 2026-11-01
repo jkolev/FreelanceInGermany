@@ -1,0 +1,14 @@
+---
+import Avatar from './Avatar.astro';
+import { site } from '../data/site';
+const { name, bio, url } = site.author;
+---
+<div class="flex items-start gap-4 border-t border-line pt-7">
+  <Avatar size={56} />
+  <div>
+    <p class="m-0 font-semibold">Written by <a href={url}>{name}</a></p>
+    <p class="m-0 mt-1 text-[15px] leading-relaxed text-muted">
+      {bio} General information, not tax, legal or insurance advice.
+    </p>
+  </div>
+</div>

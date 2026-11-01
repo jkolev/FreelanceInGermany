@@ -1,0 +1,42 @@
+---
+import { render } from 'astro:content';
+import ArticleLayout from '../layouts/ArticleLayout.astro';
+import ShortAnswer from '../components/ShortAnswer.astro';
+import Term from '../components/Term.astro';
+import Callout from '../components/Callout.astro';
+import ComparisonTable from '../components/ComparisonTable.astro';
+import ProviderCard from '../components/ProviderCard.astro';
+import AffiliateLink from '../components/AffiliateLink.astro';
+import HealthCostCalculator from '../components/HealthCostCalculator.astro';
+import Figure from '../components/Figure.astro';
+import AnnotatedLetter from '../components/AnnotatedLetter.astro';
+import { getArticles, type Article } from '../lib/articles';
+
+export async function getStaticPaths() {
+  const articles = await getArticles();
+  return articles.map((article) => ({ params: { slug: article.id }, props: { article } }));
+}
+
+const { article } = Astro.props as { article: Article };
+const { Content, headings } = await render(article);
+// Components available in every MDX article without importing them
+const components = {
+  ShortAnswer,
+  Term,
+  Callout,
+  ComparisonTable,
+  ProviderCard,
+  AffiliateLink,
+  HealthCostCalculator,
+  Figure,
+  AnnotatedLetter,
+};
+
+// Every article opens with the answer: fail the build if the short answer is missing
+if (article.data.type !== 'tool' && !article.body?.includes('<ShortAnswer')) {
+  throw new Error(`Article "${article.id}" has no <ShortAnswer>. Every article starts with the answer in 3–4 lines.`);
+}
+---
+<ArticleLayout article={article} headings={headings}>
+  <Content components={components} />
+</ArticleLayout>

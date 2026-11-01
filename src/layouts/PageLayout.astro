@@ -1,0 +1,22 @@
+---
+/** Simple text page (About, Privacy, Impressum …) */
+import BaseLayout from './BaseLayout.astro';
+interface Props {
+  title: string;
+  description?: string;
+  lead?: string;
+  noindex?: boolean;
+}
+const { title, description, lead, noindex } = Astro.props;
+---
+<BaseLayout title={title} description={description} noindex={noindex}>
+  <div class="container-page py-12">
+    <div class="max-w-[720px]">
+      <h1 class="m-0 mb-4 text-[34px] leading-tight font-bold tracking-[-0.025em] sm:text-[42px]">{title}</h1>
+      {lead && <p class="m-0 mb-8 text-xl leading-relaxed text-muted">{lead}</p>}
+      <div class="prose prose-lg prose-site max-w-none">
+        <slot />
+      </div>
+    </div>
+  </div>
+</BaseLayout>

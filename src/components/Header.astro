@@ -1,0 +1,43 @@
+---
+import Icon from './Icon.astro';
+import ThemeToggle from './ThemeToggle.astro';
+import { site, hubs } from '../data/site';
+
+interface Props {
+  current?: string;
+}
+const { current } = Astro.props;
+const nav = [
+  ...hubs.map((h) => ({ href: `/${h.id}`, label: h.short, id: h.id as string })),
+  { href: '/calculators', label: 'Calculators', id: 'calculators' },
+];
+---
+<header class="border-b border-line bg-surface">
+  <div class="container-page flex flex-wrap items-center gap-x-5 gap-y-1 py-3 sm:py-4">
+    <a href="/" class="order-1 flex items-center gap-2.5 text-ink no-underline hover:text-ink">
+      <span class="flex size-8 items-center justify-center rounded-lg bg-accent text-on-accent">
+        <Icon name="home" size={18} />
+      </span>
+      <span class="text-lg font-bold tracking-[-0.01em]">{site.name}</span>
+    </a>
+    <nav aria-label="Main" class="order-3 -mx-6 flex sm:order-2 sm:ml-auto w-[calc(100%+3rem)] gap-x-5 overflow-x-auto px-6 text-[15px] font-medium whitespace-nowrap [scrollbar-width:none] sm:mx-0 sm:w-auto sm:flex-wrap sm:overflow-visible sm:px-0">
+      {
+        nav.map((item) => (
+          <a
+            href={item.href}
+            class:list={[
+              'py-2.5 no-underline',
+              current === item.id ? 'text-accent' : 'text-ink hover:text-accent',
+            ]}
+            aria-current={current === item.id ? 'page' : undefined}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+    <div class="order-2 ml-auto sm:order-3 sm:ml-0">
+      <ThemeToggle />
+    </div>
+  </div>
+</header>

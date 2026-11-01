@@ -1,0 +1,37 @@
+---
+/**
+ * A Markdown table that reads as a table on wide screens and as stacked cards on phones.
+ * The first column becomes each card's title; add a "Best for" row or column so every option says who it suits.
+ *
+ * <ComparisonTable>
+ * |                | Public (GKV)          | Private (PKV)             |
+ * | -------------- | --------------------- | ------------------------- |
+ * | Price based on | Your income           | Your age and health       |
+ * | Best for       | Families, mixed income| Young, healthy, high earners |
+ * </ComparisonTable>
+ */
+interface Props {
+  caption?: string;
+}
+const { caption } = Astro.props;
+
+// At build time, label every cell with its column header so phones can show stacked cards (CSS: .cmp)
+const html = await Astro.slots.render('default');
+const strip = (s: string) => s.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').trim();
+const escapeAttr = (s: string) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+const headRow = html.match(/<thead[^>]*>[\s\S]*?<\/thead>/i)?.[0] ?? '';
+const labels = [...headRow.matchAll(/<th(?:\s[^>]*)?>([\s\S]*?)<\/th>/gi)].map((m) => strip(m[1]));
+const labelled = html.replace(/<tbody[^>]*>[\s\S]*?<\/tbody>/gi, (body) =>
+  body.replace(/<tr[^>]*>[\s\S]*?<\/tr>/gi, (row) => {
+    let i = 0;
+    return row.replace(/<td(\s[^>]*)?>/gi, (td, attrs = '') => {
+      const label = labels[i++];
+      return label ? `<td${attrs} data-label="${escapeAttr(label)}">` : td;
+    });
+  }),
+);
+---
+<figure class="not-prose cmp my-8">
+  <div class="cmp-box" set:html={labelled} />
+  {caption && <figcaption class="mt-2 text-sm text-muted">{caption}</figcaption>}
+</figure>

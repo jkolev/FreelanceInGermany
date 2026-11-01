@@ -1,0 +1,27 @@
+---
+import { articleUrl, formatDate, type Article } from '../lib/articles';
+interface Props {
+  articles: Article[];
+  empty?: string;
+}
+const { articles, empty = 'Guides are on their way.' } = Astro.props;
+---
+{
+  articles.length === 0 ? (
+    <p class="text-muted">{empty}</p>
+  ) : (
+    <ul class="m-0 list-none border-t border-line p-0">
+      {articles.map((a) => (
+        <li>
+          <a
+            href={articleUrl(a)}
+            class="flex flex-wrap justify-between gap-x-4 gap-y-1 border-b border-line py-[18px] text-ink no-underline hover:text-accent"
+          >
+            <span class="font-semibold">{a.data.title}</span>
+            <span class="text-sm text-muted">Checked {formatDate(a.data.lastChecked)}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+}

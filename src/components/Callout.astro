@@ -1,0 +1,24 @@
+---
+import Icon from './Icon.astro';
+/** Deadline or warning box. Use sparingly: amber means "act on this". */
+interface Props {
+  title: string;
+  kind?: 'deadline' | 'warning' | 'note';
+}
+const { title, kind = 'deadline' } = Astro.props;
+const isNote = kind === 'note';
+---
+<aside
+  class:list={[
+    'not-prose flex gap-3.5 rounded-xl border px-5 py-4',
+    isNote ? 'border-line bg-subtle' : 'border-warn-line bg-warn-bg',
+  ]}
+>
+  <Icon name="clock" size={22} class={isNote ? 'mt-1 shrink-0 text-muted' : 'mt-1 shrink-0 text-warn-icon'} />
+  <div>
+    <p class:list={['m-0 mb-1 font-semibold', isNote ? 'text-ink' : 'text-warn-ink']}>{title}</p>
+    <div class:list={['text-base leading-relaxed [&_p]:m-0', isNote ? 'text-ink-2' : 'text-warn-ink']}>
+      <slot />
+    </div>
+  </div>
+</aside>

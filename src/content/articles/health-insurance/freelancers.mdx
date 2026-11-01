@@ -1,0 +1,90 @@
+---
+# ─────────────────────────────────────────────────────────────────────────────
+# EXAMPLE / STARTER ARTICLE (#1 in docs/ARTICLES.md)
+#
+# Where articles go:  src/content/articles/<hub>/<slug>.mdx
+#   <hub>  = health-insurance | start | taxes | insurance | banking
+#   <slug> = the file name; it becomes the URL
+# This file → https://your-domain/health-insurance/freelancers
+#
+# While `draft: true`, the article shows in `npm run dev` but is left out of the
+# live build. Set it to false when it's ready.
+# ─────────────────────────────────────────────────────────────────────────────
+title: "Health insurance for freelancers in Germany: the complete guide"
+description: "[One or two sentences for Google, under 170 characters.]"
+hub: health-insurance
+type: pillar                  # pillar | cluster | comparison | tool
+published: 2026-11-01         # first publish date
+lastChecked: 2026-11-01       # update every time you re-check the facts
+readingMinutes: 10            # roughly words ÷ 220
+hasAffiliateLinks: false      # true if you use ProviderCard or AffiliateLink
+featured: false               # true = shown under "Popular guides" on the homepage
+draft: true
+sources:                      # at least one; official sources first
+  - title: "[VERIFY: name of the page and publisher]"
+    url: https://example.com
+faq:                          # optional; shown as "Questions" and as FAQ data for Google
+  - question: "[A question readers search for]"
+    answer: "[A short, complete answer.]"
+---
+
+{/*
+  Comments like this one are not shown on the page. Delete them when you write the article.
+  Components below work without importing them. Full list: README.md, "Writing an article".
+*/}
+
+<ShortAnswer>
+[The answer in three or four sentences, including the most important caveat. Someone who reads only this box should
+know what to do.]
+
+[Optional second paragraph.]
+</ShortAnswer>
+
+## [First question the reader has]
+
+[Short paragraphs. Use the reader's words in headings.] German terms get a chip the first time they appear, like
+<Term de="Krankenkasse" />. Every term must be in `src/data/glossary.ts`.
+
+## [Second question]
+
+[Comparison tables: options as columns, attributes as rows, empty first header cell, "Best for" as the last row.
+On phones this turns into cards.]
+
+<ComparisonTable>
+|              | [Option A] | [Option B] |
+| ------------ | ---------- | ---------- |
+| [Attribute]  | [Value]    | [Value]    |
+| Best for     | [Who]      | [Who]      |
+</ComparisonTable>
+
+<Callout title="[Deadline or real risk]">
+[Use amber callouts only for deadlines and real risks, at most two per article.]
+</Callout>
+
+## [Third question]
+
+[Steps in order:]
+
+1. [First step]
+2. [Second step]
+3. [Third step]
+
+{/*
+  More components (delete the ones you don't need):
+
+  <Callout kind="note" title="Good to know">A neutral side note.</Callout>
+
+  <HealthCostCalculator />
+
+  <ProviderCard name="[Provider]" bestFor="[who it suits]" link="provider-a" highlight />
+  <AffiliateLink slug="provider-a">inline affiliate link</AffiliateLink>
+  → `link` / `slug` must exist in src/data/links.ts, and set hasAffiliateLinks: true above.
+
+  Images: put them in src/assets/, import them at the top of this file (below the frontmatter), e.g.
+    import letter from '../../../assets/letters/prepayment.png';
+  then:
+    <Figure src={letter} alt="…" caption="…" />
+    <AnnotatedLetter src={letter} alt="…" title="…" notes={[{ x: 72, y: 12, label: 'Steuernummer', text: '…' }]} />
+
+  Links to other articles: [public vs. private](/health-insurance/public-vs-private)
+*/}

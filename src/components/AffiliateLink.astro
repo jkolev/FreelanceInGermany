@@ -1,0 +1,29 @@
+---
+/**
+ * Link through /go/<slug> so the click is counted and the article is passed as a sub-ID.
+ * The slug must exist in src/data/links.ts.
+ */
+import { affiliateLinks } from '../data/links';
+import { cleanPath } from '../lib/articles';
+interface Props {
+  slug: string;
+  class?: string;
+  variant?: 'primary' | 'secondary' | 'inline';
+}
+const { slug, class: className, variant = 'inline' } = Astro.props;
+if (!affiliateLinks[slug]) {
+  throw new Error(`Unknown affiliate link "${slug}". Add it to src/data/links.ts.`);
+}
+const from = cleanPath(Astro.url.pathname).replace(/^\//, '').replace(/\//g, '_') || 'home';
+const href = `/go/${slug}?from=${encodeURIComponent(from)}`;
+const base =
+  variant === 'primary' ? 'btn-primary min-h-11 px-[18px] text-[15px]' : variant === 'secondary' ? 'btn-secondary min-h-11 px-[18px] text-[15px]' : '';
+---
+<a href={href} rel="sponsored nofollow noopener" target="_blank" class:list={[base, className]}>
+  <slot />
+  {
+    variant !== 'inline' && (
+      <span class:list={['text-[11px] font-medium', variant === 'primary' ? 'opacity-85' : 'text-muted']}>affiliate</span>
+    )
+  }
+</a>

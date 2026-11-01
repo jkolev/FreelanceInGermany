@@ -1,0 +1,59 @@
+---
+import { site } from '../data/site';
+---
+<form id="contact-form" class="flex max-w-xl flex-col gap-5" novalidate>
+  <div class="flex flex-col gap-1.5">
+    <label for="cf-name" class="text-sm font-semibold">Name</label>
+    <input id="cf-name" name="name" type="text" required maxlength="100" autocomplete="name" class="field" />
+  </div>
+  <div class="flex flex-col gap-1.5">
+    <label for="cf-email" class="text-sm font-semibold">Email</label>
+    <input id="cf-email" name="email" type="email" required maxlength="200" autocomplete="email" class="field" />
+  </div>
+  <div class="flex flex-col gap-1.5">
+    <label for="cf-message" class="text-sm font-semibold">Message</label>
+    <textarea id="cf-message" name="message" required minlength="10" maxlength="5000" rows="7" class="field py-3"
+    ></textarea>
+  </div>
+  <!-- Honeypot: hidden from people, bots fill it in -->
+  <div class="absolute -left-[9999px]" aria-hidden="true">
+    <label for="cf-website">Website</label>
+    <input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+  <div class="cf-turnstile" data-sitekey={site.turnstileSiteKey} data-theme="auto"></div>
+  <p class="m-0 text-sm text-muted">
+    We use your details only to reply to you. See our <a href="/privacy">privacy policy</a>.
+  </p>
+  <div>
+    <button type="submit" class="btn-primary cursor-pointer border-0">Send message</button>
+  </div>
+  <p id="cf-status" role="status" aria-live="polite" class="m-0 text-[15px]"></p>
+</form>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer is:inline></script>
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('cf-status');
+  form?.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    if (!status) return;
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    const button = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    button.disabled = true;
+    status.textContent = 'Sending…';
+    try {
+      const res = await fetch('/api/contact', { method: 'POST', body: new FormData(form) });
+      const data = (await res.json().catch(() => ({}))) as { error?: string };
+      if (!res.ok) throw new Error(data.error ?? 'Something went wrong.');
+      form.reset();
+      status.textContent = 'Thanks, your message is on its way. I usually reply within a few days.';
+    } catch (err) {
+      status.textContent = `${(err as Error).message} You can also email us directly (see Impressum).`;
+    } finally {
+      button.disabled = false;
+      (window as unknown as { turnstile?: { reset: () => void } }).turnstile?.reset();
+    }
+  });
+</script>

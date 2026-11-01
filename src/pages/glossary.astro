@@ -1,0 +1,31 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { glossary, glossaryId } from '../data/glossary';
+const entries = Object.entries(glossary).sort(([a], [b]) => a.localeCompare(b, 'de'));
+---
+<PageLayout
+  title="Glossary"
+  description="German bureaucracy terms for freelancers, explained in plain English."
+  lead="The German words you will meet as a freelancer, in plain English."
+>
+  <dl class="not-prose m-0 border-t border-line">
+    {
+      entries.map(([term, e]) => (
+        <div id={glossaryId(term)} class="scroll-mt-6 border-b border-line py-4 target:bg-accent-soft">
+          <dt lang="de" class="text-lg font-semibold italic">
+            {term}
+          </dt>
+          <dd class="m-0 mt-1 text-ink-2">
+            {e.en}
+            {e.more && <span class="mt-1 block text-[15px] text-muted">{e.more}</span>}
+            {e.href && (
+              <a href={e.href} class="mt-1 block text-[15px]">
+                Read the guide
+              </a>
+            )}
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+</PageLayout>

@@ -1,0 +1,13 @@
+---
+/** The answer in 3–4 lines, at the top of every article. */
+interface Props {
+  title?: string;
+}
+const { title = 'The short answer' } = Astro.props;
+---
+<div class="not-prose rounded-card border border-accent-line bg-accent-soft px-7 py-6 [&_p]:m-0 [&_p+p]:mt-3">
+  <p class="eyebrow mb-2.5! text-accent-ink">{title}</p>
+  <div class="text-[18px] leading-[1.7] text-ink [&_strong]:font-semibold">
+    <slot />
+  </div>
+</div>

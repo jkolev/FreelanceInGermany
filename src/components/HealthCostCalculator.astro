@@ -1,0 +1,118 @@
+---
+import Icon from './Icon.astro';
+import { gkv } from '../data/rates';
+
+/**
+ * Public health insurance (GKV) contribution estimate for self-employed members.
+ * Runs entirely in the browser. Rates live in src/data/rates.ts.
+ */
+const fmtPct = (n: number) => `${n.toLocaleString('en-GB', { maximumFractionDigits: 2 })}%`;
+---
+<div class="not-prose card my-8 p-7" data-gkv-calculator>
+  <div class="mb-5 flex flex-wrap items-center justify-between gap-2">
+    <h3 class="m-0 text-xl leading-snug font-semibold">Public health insurance cost calculator</h3>
+    <span class="flex items-center gap-1.5 text-[13px] text-muted">
+      <Icon name="lock" size={14} /> Runs in your browser
+    </span>
+  </div>
+
+  <div class="mb-6 grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-4">
+    <div class="flex flex-col gap-1.5">
+      <label for="gkv-profit" class="text-sm font-semibold">Yearly profit (€)</label>
+      <input id="gkv-profit" name="profit" type="number" inputmode="numeric" min="0" step="1000" value="48000" class="field" />
+    </div>
+    <div class="flex flex-col gap-1.5">
+      <label for="gkv-age" class="text-sm font-semibold">Your age</label>
+      <input id="gkv-age" name="age" type="number" inputmode="numeric" min="16" max="99" value="34" class="field" />
+    </div>
+    <div class="flex flex-col gap-1.5">
+      <label for="gkv-kids" class="text-sm font-semibold">Children under 25</label>
+      <select id="gkv-kids" name="kids" class="field">
+        <option value="0">None</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5 or more</option>
+      </select>
+    </div>
+    <div class="flex flex-col gap-1.5">
+      <label for="gkv-extra" class="text-sm font-semibold">Insurer's extra rate (%)</label>
+      <input id="gkv-extra" name="extra" type="number" inputmode="decimal" min="0" max="6" step="0.01" value={gkv.avgAdditionalRate} class="field" />
+    </div>
+  </div>
+
+  <label class="mb-6 flex cursor-pointer items-start gap-3 text-[15px] leading-normal">
+    <input id="gkv-sickpay" name="sickpay" type="checkbox" checked class="mt-1 size-5 accent-accent" />
+    <span>Include sick pay from day 43 (<span lang="de" class="italic">Krankengeld</span>), general rate {fmtPct(gkv.generalRate)} instead of {fmtPct(gkv.reducedRate)}</span>
+  </label>
+
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-3">
+    <div class="rounded-[10px] bg-accent-soft p-[18px]">
+      <p class="m-0 text-sm text-ink-2">You pay per month</p>
+      <p class="m-0 mt-1 text-[30px] font-bold tracking-[-0.02em] tabular-nums" data-out="total">–</p>
+    </div>
+    <div class="rounded-[10px] bg-subtle p-[18px] text-[15px] leading-relaxed text-ink-2">
+      <p class="m-0 flex justify-between gap-4"><span>Health insurance</span><span class="tabular-nums" data-out="health">–</span></p>
+      <p class="m-0 flex justify-between gap-4"><span>Long-term care</span><span class="tabular-nums" data-out="care">–</span></p>
+      <p class="m-0 flex justify-between gap-4"><span>Per year</span><span class="tabular-nums" data-out="year">–</span></p>
+    </div>
+  </div>
+
+  <p class="m-0 mt-3 text-sm text-ink-2" data-out="note"></p>
+
+  <p class="m-0 mt-4 text-sm leading-relaxed text-muted">
+    How this is calculated: {gkv.year} rates applied to your monthly profit, at least
+    €{gkv.minBase.toLocaleString('en-GB', { minimumFractionDigits: 2 })} and at most
+    €{gkv.maxBase.toLocaleString('en-GB', { minimumFractionDigits: 2 })}. Long-term care is {fmtPct(gkv.careRate)},
+    plus{' '}{fmtPct(gkv.careChildlessSurcharge)} if you are 23 or older without children, minus{' '}
+    {fmtPct(gkv.careDiscountPerChild)} for each child from the second to the fifth. Self-employed members pay the full
+    amount themselves. An estimate, not a quote: your insurer calculates the final amount from your tax assessment.
+  </p>
+</div>
+
+<script>
+  import { gkv } from '../data/rates';
+
+  const eur = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'EUR' });
+
+  for (const root of document.querySelectorAll<HTMLElement>('[data-gkv-calculator]')) {
+    const input = (name: string) => root.querySelector(`[name="${name}"]`) as HTMLInputElement | HTMLSelectElement;
+    const out = (name: string) => root.querySelector(`[data-out="${name}"]`) as HTMLElement;
+
+    const update = () => {
+      const profit = Math.max(0, Number(input('profit').value) || 0);
+      const age = Number(input('age').value) || 0;
+      const kids = Number(input('kids').value) || 0;
+      const extra = Math.max(0, Number(input('extra').value) || 0);
+      const sickPay = (input('sickpay') as HTMLInputElement).checked;
+
+      const monthly = profit / 12;
+      const base = Math.min(Math.max(monthly, gkv.minBase), gkv.maxBase);
+
+      const healthRate = (sickPay ? gkv.generalRate : gkv.reducedRate) + extra;
+      let careRate = gkv.careRate;
+      if (kids === 0 && age >= 23) careRate += gkv.careChildlessSurcharge;
+      if (kids >= 2) careRate -= gkv.careDiscountPerChild * (Math.min(kids, 5) - 1);
+
+      const health = (base * healthRate) / 100;
+      const care = (base * careRate) / 100;
+      const total = health + care;
+
+      out('total').textContent = eur.format(total);
+      out('health').textContent = eur.format(health);
+      out('care').textContent = eur.format(care);
+      out('year').textContent = eur.format(total * 12);
+      out('note').textContent =
+        monthly < gkv.minBase
+          ? 'Your profit is below the minimum, so the minimum contribution applies.'
+          : monthly > gkv.maxBase
+            ? 'Your profit is above the ceiling, so you pay the maximum contribution.'
+            : '';
+    };
+
+    root.addEventListener('input', update);
+    root.addEventListener('change', update);
+    update();
+  }
+</script>

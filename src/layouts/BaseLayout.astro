@@ -57,7 +57,12 @@ const canonical = new URL(cleanPath(Astro.url.pathname), Astro.site);
     <meta name="twitter:card" content="summary" />
     <meta name="generator" content={Astro.generator} />
     <Font cssVariable="--font-inter" preload />
-    {jsonLd.map((data) => <script type="application/ld+json" set:html={JSON.stringify(data)} />)}
+    {
+      jsonLd.map((data) => (
+        // Escape "<" so text containing "</script>" can't end the tag early
+        <script type="application/ld+json" set:html={JSON.stringify(data).replace(/</g, '\\u003c')} />
+      ))
+    }
     <slot name="head" />
   </head>
   <body class="flex min-h-screen flex-col text-lg leading-relaxed">

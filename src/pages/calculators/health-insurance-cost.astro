@@ -2,24 +2,444 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumb from '../../components/Breadcrumb.astro';
 import HealthCostCalculator from '../../components/HealthCostCalculator.astro';
-import { gkv } from '../../data/rates';
+import { gkv, gkvSources as sources } from '../../data/rates';
+import { cleanPath } from '../../lib/articles';
+import { buildGkvPage, fmt, fmtInt, pct, pct1 } from '../../lib/gkv-page';
+
+const page = buildGkvPage();
+const { year, examples, careRows, faq, next, worked, childCareSaving, low } = page;
+const example = fmtInt(page.exampleIncome);
+
+// Rendered in <head> by BaseLayout (which escapes it); same canonical URL as BaseLayout
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: page.title,
+    description: page.description,
+    url: new URL(cleanPath(Astro.url.pathname), Astro.site).href,
+    applicationCategory: 'FinanceApplication',
+    operatingSystem: 'Any',
+    inLanguage: 'en',
+    dateModified: gkv.lastChecked,
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'EUR' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  },
+];
 ---
-<BaseLayout
-  title={`Public health insurance calculator for freelancers (${gkv.year})`}
-  description="Estimate your monthly public health and long-term care insurance contribution as a self-employed member in Germany."
-  current="calculators"
->
+<BaseLayout title={page.title} description={page.description} current="calculators" jsonLd={jsonLd}>
   <div class="container-page py-10">
-    <div class="max-w-190">
+    <div class="max-w-[760px]">
       <Breadcrumb items={[{ href: '/calculators', label: 'Calculators' }]} />
-      <h1 class="m-0 mb-3 text-[34px] leading-tight font-bold tracking-tight sm:text-[42px]">
-        Public health insurance calculator for freelancers
+      <h1 class="m-0 mb-3 text-[34px] leading-tight font-bold tracking-[-0.025em] sm:text-[42px]">
+        Public health insurance calculator for freelancers in Germany
       </h1>
       <p class="m-0 text-lg text-muted">
-        Uses {gkv.year} rates. Want to compare with private insurance? Read
+        Estimate your monthly health and long-term care insurance contribution as a self-employed
+        member of the public health insurance (<abbr title="gesetzliche Krankenversicherung">GKV</abbr>),
+        using {year} rates. Enter your profit, choose your sick pay option, and add the additional
+        rate of your insurer. Not sure whether public insurance is right for you? Read
         <a href="/health-insurance/public-vs-private">public vs. private health insurance</a>.
       </p>
+
       <HealthCostCalculator />
+
+      <p class="note text-muted">
+        The result is an estimate. Your insurer sets the final amount, first provisionally and then
+        retroactively based on your tax assessment. Last checked: {page.lastCheckedLabel}.
+      </p>
+
+      <nav class="toc" aria-label="On this page">
+        <strong>On this page</strong>
+        <ul>
+          <li><a href="#key-numbers">Key numbers for {year}</a></li>
+          <li><a href="#how-it-works">How your contribution is calculated</a></li>
+          <li><a href="#income">What counts as income</a></li>
+          <li><a href="#examples">Example contributions</a></li>
+          <li><a href="#sick-pay">Sick pay: with or without?</a></li>
+          <li><a href="#additional-rate">Why your insurer’s rate matters</a></li>
+          <li><a href="#care">Long-term care insurance</a></li>
+          <li><a href="#limits">What this calculator does not cover</a></li>
+          <li><a href="#next-year">What changes in {next.year}</a></li>
+          <li><a href="#tax">Taxes</a></li>
+          <li><a href="#faq">Frequently asked questions</a></li>
+          <li><a href="#sources">Sources</a></li>
+        </ul>
+      </nav>
+
+      <div class="content">
+        <h2 id="key-numbers">Key numbers for {year}</h2>
+        <dl class="facts">
+          <div>
+            <dt>Minimum income base</dt>
+            <dd>{fmt(gkv.minBase)} euros per month</dd>
+          </div>
+          <div>
+            <dt>Maximum income base</dt>
+            <dd>{fmt(gkv.maxBase)} euros per month</dd>
+          </div>
+          <div>
+            <dt>Health insurance rate</dt>
+            <dd>
+              {pct1(gkv.reducedRate)} percent without sick pay, {pct1(gkv.generalRate)} percent with
+              sick pay, plus the additional rate of your insurer
+            </dd>
+          </div>
+          <div>
+            <dt>Average additional rate</dt>
+            <dd>{pct1(gkv.avgAdditionalRate)} percent (official average)</dd>
+          </div>
+          <div>
+            <dt>Long-term care insurance</dt>
+            <dd>
+              {pct(gkv.careRate)} percent, or {pct(page.childlessCareRate)} percent if you are
+              {gkv.careChildlessMinAge} or older without children
+            </dd>
+          </div>
+          <div>
+            <dt>Typical total</dt>
+            <dd>
+              from {fmt(page.lowestTypical.total)} to {fmt(page.highest.total)} euros per month
+            </dd>
+          </div>
+        </dl>
+
+        <h2 id="how-it-works">How your contribution is calculated</h2>
+        <p>Your insurer multiplies your income with a rate. It works in four steps:</p>
+        <ol>
+          <li>
+            Start with your monthly income subject to contributions: your profit (<em>Gewinn</em>)
+            divided by 12, plus other income such as rent or capital gains.
+          </li>
+          <li>
+            Apply the floor and the cap. Below {fmt(gkv.minBase)} euros you pay as if you earned that
+            amount. Income above {fmt(gkv.maxBase)} euros is not charged.
+          </li>
+          <li>
+            Multiply with the health insurance rate: {pct1(gkv.reducedRate)} percent without sick pay or
+            {pct1(gkv.generalRate)} percent with sick pay, plus the additional rate (<em>Zusatzbeitrag</em>)
+            of your insurer.
+          </li>
+          <li>
+            Add long-term care insurance: {pct(gkv.careRate)} percent, plus {pct(gkv.careChildlessSurcharge)}
+            points if you are {gkv.careChildlessMinAge} or older without children, minus
+            {pct(gkv.careDiscountPerChild)} points for each child from the second to the fifth.
+          </li>
+        </ol>
+        <p>
+          You pay all of it yourself, because there is no employer share. For example, with a profit
+          of {example} euros per month, no sick pay, no children, and the average additional rate, health
+          insurance is {example} × {pct(worked.healthRate)} percent = {fmt(worked.health)} euros and
+          long-term care is {example} × {pct(worked.careRate)} percent = {fmt(worked.care)} euros. The
+          total is {fmt(worked.total)} euros per month.
+        </p>
+
+        <h2 id="income">What counts as income</h2>
+        <p>
+          The basis is your profit, not your revenue. Business expenses reduce it, so deducting every
+          legitimate expense lowers your health insurance contribution as well as your income tax. See
+          <a href="/taxes/deductible-expenses-for-freelancers">deductible expenses for freelancers</a>.
+        </p>
+        <ul>
+          <li>
+            <strong>Other income counts too.</strong> As a voluntary member, income such as rent,
+            capital gains, and pensions is added to your profit.
+          </li>
+          <li>
+            <strong>Provisional first, final later.</strong> Your insurer sets your contribution from
+            your last tax assessment and settles it retroactively when the assessment for the
+            contribution year arrives. Refunds and back payments are normal, so keep a reserve.
+          </li>
+          <li>
+            <strong>Starting out.</strong> When you begin freelancing, your insurer sets contributions
+            provisionally on the income you expect, which you should be able to support with documents.
+            If you cannot show your income when asked, the insurer can charge a higher amount, so
+            answer its requests promptly.
+          </li>
+        </ul>
+
+        <h2 id="examples">Example contributions for {year}</h2>
+        <div class="table-wrap">
+          <table>
+            <caption>
+              Monthly contribution by profit, {year}. No children, age {gkv.careChildlessMinAge} or older,
+              average additional rate of {pct1(gkv.avgAdditionalRate)} percent. Health and long-term care
+              combined, in euros.
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Profit per month</th>
+                <th scope="col">Contribution base</th>
+                <th scope="col">Without sick pay</th>
+                <th scope="col">With sick pay</th>
+                <th scope="col">Per year, without sick pay</th>
+              </tr>
+            </thead>
+            <tbody>
+              {examples.map((e) => (
+                <tr>
+                  <th scope="row">{e.label}</th>
+                  <td>{fmt(e.noSickPay.healthBase)}</td>
+                  <td>{fmt(e.noSickPay.total)}</td>
+                  <td>{fmt(e.withSickPay.total)}</td>
+                  <td>{fmt(e.noSickPay.yearly)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p>
+          With one child you pay {pct(gkv.careChildlessSurcharge)} points less for long-term care, which
+          is {fmt(childCareSaving)} euros less per month at a profit of {example} euros.
+        </p>
+        <p class="callout">
+          <strong>Low profit, high share.</strong> A profit of {fmtInt(page.lowIncome)} euros per month is charged as if it
+          were {fmt(gkv.minBase)} euros. You pay {fmt(low.total)} euros, which is
+          {pct1(low.shareOfIncome ?? 0)} percent of your actual profit.
+        </p>
+
+        <h2 id="sick-pay">Sick pay: with or without?</h2>
+        <p>
+          The general rate of {pct1(gkv.generalRate)} percent includes a statutory claim to sick pay
+          (<em>Krankengeld</em>) from the 43rd day of illness. The reduced rate of
+          {pct1(gkv.reducedRate)} percent has no such claim and is {pct1(gkv.generalRate - gkv.reducedRate)}
+          percentage points cheaper, which is {fmt(page.sickPayDiff)} euros per month at a profit
+          of {example} euros.
+        </p>
+        <p>
+          Without sick pay, think about how you would cover lost income during a long illness. Some
+          insurers also offer optional tariffs with other start dates, so ask yours.
+        </p>
+
+        <h2 id="additional-rate">Why your insurer’s rate matters</h2>
+        <p>
+          Every public insurer sets its own additional rate on top of the general rate. The official
+          average for {year} is {pct1(gkv.avgAdditionalRate)} percent, but insurers reportedly charge
+          about {pct1(gkv.reportedAvgChargedRate)} percent on average, and individual rates differ
+          noticeably. Each extra 0.1 percentage points costs about {fmt(page.tenthPointAtExample)} euros per
+          month at a profit of {example} euros and {fmt(page.tenthPointAtCap)} euros at the maximum.
+        </p>
+        <p>
+          Look up the additional rate of your insurer on its website and enter it in the calculator for
+          a realistic result.
+        </p>
+
+        <h2 id="care">Long-term care insurance: childless surcharge and children discount</h2>
+        <div class="table-wrap">
+          <table>
+            <caption>Long-term care insurance rate by family situation, {year}</caption>
+            <thead>
+              <tr>
+                <th scope="col">Situation</th>
+                <th scope="col">Rate</th>
+              </tr>
+            </thead>
+            <tbody>
+              {careRows.map((r) => (
+                <tr>
+                  <th scope="row">{r.label}</th>
+                  <td>{pct(r.rate)} percent</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p>
+          The discount counts children under 25. Tell your insurer about your children so that it
+          applies the correct rate.
+        </p>
+
+        <h2 id="limits">What this calculator does not cover</h2>
+        <ul>
+          <li>
+            Members of the Künstlersozialkasse (artists and publicists), who pay only about half of
+            the contributions.
+          </li>
+          <li>
+            Employees with freelance side income, who are usually insured through their job.
+          </li>
+          <li>Students and other special statuses, and private health insurance.</li>
+          <li>Optional insurer tariffs (<em>Wahltarife</em>), for example sick pay with a different start date.</li>
+          <li>The exact assessment and rounding rules of your insurer.</li>
+        </ul>
+
+        <h2 id="next-year">What changes in {next.year}</h2>
+        <p>
+          Several values change in {next.year}. As of {page.lastCheckedLabel}, these values are planned
+          and not final:
+        </p>
+        <ul>
+          <li>
+            The maximum income base rises from {fmt(gkv.maxBase)} to {fmt(next.maxBase)} euros per month.
+            At the reduced rate and the average additional rate, that adds about
+            {fmt(next.healthAtCapIncrease)} euros per month to the health insurance contribution of high
+            earners, before any change in long-term care insurance.
+          </li>
+          <li>
+            The reference value (<em>Bezugsgröße</em>) rises to {fmtInt(next.bezugsgroesse)} euros,
+            so the minimum income base becomes {fmt(next.minBase)} euros. That adds about
+            {fmt(next.healthAtMinIncrease)} euros to the minimum health insurance contribution.
+          </li>
+          <li>
+            Experts estimate that the average additional rate stays at {pct1(next.avgAdditionalRate)} percent. The official figure
+            is published in November, and your insurer sets its own rate.
+          </li>
+          <li>Changes to long-term care insurance are still being decided.</li>
+        </ul>
+        <p>This page will be updated with the final {next.year} values.</p>
+
+        <h2 id="tax">Taxes: can you deduct the contributions?</h2>
+        <p>
+          Yes, but not as business expenses. Health and long-term care contributions are special
+          expenses (<em>Sonderausgaben</em>) that you enter separately in your tax return. They do not
+          reduce the profit in your <em>Anlage EÜR</em>, so they also do not reduce your contribution
+          base. For everything you can deduct from your profit, read
+          <a href="/taxes/deductible-expenses-for-freelancers">deductible expenses for freelancers</a>.
+        </p>
+
+        <h2 id="faq">Frequently asked questions</h2>
+        {faq.map((item) => (
+          <>
+            <h3>{item.q}</h3>
+            <p>{item.a}</p>
+          </>
+        ))}
+
+        <h2 id="sources">Sources</h2>
+        <ul>
+          {sources.map((s) => (
+            <li><a href={s.href} rel="noopener">{s.label}</a></li>
+          ))}
+        </ul>
+        <p class="text-muted">
+          Last checked: {page.lastCheckedLabel}. Values are updated every January. Compare your result
+          with
+          <a href="/health-insurance/public-vs-private">private health insurance</a>
+          before you decide.
+        </p>
+      </div>
     </div>
   </div>
 </BaseLayout>
+
+<style>
+  .note {
+    margin: 1.25rem 0 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  .toc {
+    margin: 2rem 0 0;
+    padding: 1rem 1.25rem;
+    border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+    border-radius: 0.75rem;
+    font-size: 0.95rem;
+  }
+  .toc ul {
+    margin: 0.5rem 0 0;
+    padding-left: 1.1rem;
+    columns: 2 220px;
+    column-gap: 2rem;
+  }
+  .toc li {
+    margin-bottom: 0.25rem;
+  }
+  .content {
+    margin-top: 1rem;
+  }
+  .content h2 {
+    margin: 2.75rem 0 0.75rem;
+    font-size: 1.5rem;
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    scroll-margin-top: 5rem;
+  }
+  .content h3 {
+    margin: 1.75rem 0 0.4rem;
+    font-size: 1.1rem;
+    line-height: 1.3;
+    font-weight: 600;
+  }
+  .content p,
+  .content li {
+    line-height: 1.65;
+  }
+  .content p {
+    margin: 0 0 1rem;
+  }
+  .content ul,
+  .content ol {
+    margin: 0 0 1rem;
+    padding-left: 1.25rem;
+  }
+  .content li {
+    margin-bottom: 0.45rem;
+  }
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem 1.5rem;
+    margin: 0 0 1rem;
+    padding: 1.25rem;
+    border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+    border-radius: 0.75rem;
+  }
+  .facts dt {
+    font-size: 0.85rem;
+    opacity: 0.7;
+  }
+  .facts dd {
+    margin: 0.15rem 0 0;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .table-wrap {
+    overflow-x: auto;
+    margin: 0 0 1rem;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    font-variant-numeric: tabular-nums;
+  }
+  caption {
+    padding: 0 0 0.6rem;
+    font-size: 0.9rem;
+    text-align: left;
+    opacity: 0.75;
+  }
+  th,
+  td {
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+    text-align: right;
+    white-space: nowrap;
+  }
+  th:first-child,
+  td:first-child {
+    text-align: left;
+  }
+  thead th {
+    font-weight: 600;
+    border-bottom-width: 2px;
+  }
+  tbody th {
+    font-weight: 500;
+  }
+  .callout {
+    padding: 0.9rem 1.1rem;
+    border-left: 4px solid color-mix(in srgb, currentColor 35%, transparent);
+    background: color-mix(in srgb, currentColor 6%, transparent);
+    border-radius: 0.25rem;
+  }
+</style>

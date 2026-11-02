@@ -11,7 +11,9 @@ component examples, and `docs/ARTICLES.md` for the article plan and per-article 
 - `npm ci` — install (`.npmrc` disables install scripts and saves exact versions; don't add version ranges)
 - `astro dev --background` — dev server at http://localhost:4321; manage with `astro dev stop|status|logs`
 - `npm run build` — static build into `dist/`; this is also the content validator (see below)
-- `npm run check` — `astro check` type-checking (there is no test suite or linter)
+- `npm run check` — `astro check` type-checking (there is no linter)
+- `npm test` — Vitest unit tests (`src/**/*.test.ts`, currently the GKV money maths in `src/lib/gkv.test.ts`);
+  single file: `npx vitest run src/lib/gkv.test.ts`
 - `npm run preview` — build, then run site + Worker locally via `wrangler dev`
 - `npm run deploy` — build and `wrangler deploy` (outward-facing; don't run without being asked)
 

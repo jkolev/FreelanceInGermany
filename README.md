@@ -12,6 +12,7 @@ Static Astro site with Tailwind, MDX articles and a small Cloudflare Worker for 
 | `npm run preview` | Build, then run the site and the worker locally with Wrangler |
 | `npm run deploy` | Build and deploy to Cloudflare |
 | `npm run check` | Type-check everything |
+| `npm test` | Run the unit tests (health insurance maths against insurer reference values) |
 
 ## Where things live
 
@@ -21,7 +22,8 @@ Static Astro site with Tailwind, MDX articles and a small Cloudflare Worker for 
 | `src/content.config.ts` | Article frontmatter schema |
 | `src/data/site.ts` | Site name, author, hubs (topics), Turnstile site key, newsletter endpoint |
 | `src/data/links.ts` | Affiliate links used by `/go/<slug>` |
-| `src/data/rates.ts` | Health insurance rates for the calculator. **Update every January.** |
+| `src/data/rates.ts` | Health insurance rates, their sources and next year's planned values. **Update every January**, then run `npm test`. |
+| `src/lib/gkv.ts` | The health insurance calculation, shared by the calculator widget and the calculator page |
 | `src/data/calculators.ts` | Calculator cards on the homepage |
 | `src/components/` | Design components (see below) |
 | `src/layouts/` | Base, article and simple text page layouts |

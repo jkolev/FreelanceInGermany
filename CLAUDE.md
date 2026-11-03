@@ -46,8 +46,16 @@ rate-limits, and sends mail via Brevo. Secrets (`TURNSTILE_SECRET`, `BREVO_API_K
 never in `wrangler.jsonc`.
 
 **Data files** in `src/data/` hold editable site content: `site.ts` (author, hubs, Turnstile key, newsletter endpoint),
-`links.ts`, `glossary.ts`, `calculators.ts`, and `rates.ts` (statutory health insurance values used by
-`HealthCostCalculator`; must be updated every January with sources and `lastChecked`).
+`links.ts`, `glossary.ts`, `calculators.ts`, and `rates.ts` (statutory health insurance values plus `gkvSources` and a
+`gkvNext` preview of next year's planned values; must be updated every January with sources and `lastChecked`).
+
+**Health insurance maths** lives in one place: `calculateGkv()` in `src/lib/gkv.ts` (integer cents/basis points, so
+results match insurer tables to the cent). Both the browser widget (`HealthCostCalculator.astro`) and the calculator
+page's tables, FAQ and JSON-LD (via `buildGkvPage()` in `src/lib/gkv-page.ts`) call it; never re-implement the formula.
+Reference cases from insurer tables are in `src/lib/gkv.test.ts`, so run `npm test` after changing rates or the maths.
+
+**Fact-checking convention:** unverified claims in articles are marked `[VERIFY: …]` and resolved against primary
+sources (law texts on gesetze-im-internet.de, BGBl., official bodies) before an article gets `draft: false`.
 
 ## Constraints
 

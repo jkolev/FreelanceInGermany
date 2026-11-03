@@ -7,9 +7,9 @@ Status: `to write` · `draft` · `review` · `live`
 
 | # | Title | Hub | Slug | Type | Earns from | Status |
 |---|---|---|---|---|---|---|
-| 1 | Health insurance for freelancers in Germany: the complete guide | health-insurance | `freelancers` | pillar | Insurance affiliates | to write |
-| 2 | Public vs. private health insurance for freelancers | health-insurance | `public-vs-private` | comparison | Insurance affiliates, broker referrals | draft |
-| 3 | How much public health insurance costs freelancers (with calculator) | health-insurance | `public-cost` | tool | Insurance affiliates | to write |
+| 1 | Health insurance for freelancers in Germany: the complete guide | health-insurance | `freelancers` | pillar | Insurance affiliates | live |
+| 2 | Public vs. private health insurance for freelancers | health-insurance | `public-vs-private` | comparison | Insurance affiliates, broker referrals | live |
+| 3 | How much public health insurance costs freelancers (with calculator) | health-insurance | `public-cost` | tool | Insurance affiliates | review |
 | 4 | How to become a freelancer in Germany: step by step | start | `become-a-freelancer` | pillar | Banking, accounting software | to write |
 | 5 | Freiberufler vs. Gewerbe: which one are you? | start | `freiberufler-vs-gewerbe` | cluster | Accounting software | to write |
 | 6 | Getting your tax number: the tax registration questionnaire in English | start | `tax-registration-questionnaire` | cluster | Accounting software, tax advisor leads | to write |
@@ -40,7 +40,9 @@ Status: `to write` · `draft` · `review` · `live`
 
 ## Every article needs
 
-- A `<ShortAnswer>` at the top and at least one source (the build fails without them)
+- A `<ShortAnswer>` at the top and at least one source (the build fails without them; type `tool` is exempt from the
+  short answer)
+- No `[VERIFY: …]` notes left before you set `draft: false`; check each against a primary source and add it to `sources`
 - `lastChecked` date in the frontmatter, updated whenever you re-check the facts
 - German terms added to `src/data/glossary.ts` and used with `<Term de="…" />`
 - A "Best for" row in every comparison table

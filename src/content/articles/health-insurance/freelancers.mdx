@@ -1,90 +1,248 @@
 ---
-# ─────────────────────────────────────────────────────────────────────────────
-# EXAMPLE / STARTER ARTICLE (#1 in docs/ARTICLES.md)
-#
-# Where articles go:  src/content/articles/<hub>/<slug>.mdx
-#   <hub>  = health-insurance | start | taxes | insurance | banking
-#   <slug> = the file name; it becomes the URL
-# This file → https://your-domain/health-insurance/freelancers
-#
-# While `draft: true`, the article shows in `npm run dev` but is left out of the
-# live build. Set it to false when it's ready.
-# ─────────────────────────────────────────────────────────────────────────────
 title: "Health insurance for freelancers in Germany: the complete guide"
-description: "[One or two sentences for Google, under 170 characters.]"
+description: "How public and private health insurance work for freelancers in Germany: who can join, what it costs in 2026, and how hard it is to switch."
 hub: health-insurance
-type: pillar                  # pillar | cluster | comparison | tool
-published: 2026-11-01         # first publish date
-lastChecked: 2026-11-01       # update every time you re-check the facts
-readingMinutes: 10            # roughly words ÷ 220
-hasAffiliateLinks: false      # true if you use ProviderCard or AffiliateLink
-featured: false               # true = shown under "Popular guides" on the homepage
-draft: true
-sources:                      # at least one; official sources first
-  - title: "[VERIFY: name of the page and publisher]"
-    url: https://example.com
-faq:                          # optional; shown as "Questions" and as FAQ data for Google
-  - question: "[A question readers search for]"
-    answer: "[A short, complete answer.]"
+type: pillar
+published: 2026-11-02
+lastChecked: 2026-11-02
+readingMinutes: 11
+hasAffiliateLinks: false
+featured: true
+draft: false
+sources:
+  - title: "Verbraucherzentrale: Freiwillig versichert in der gesetzlichen Krankenkasse (10 Feb 2026)"
+    url: https://www.verbraucherzentrale.de/wissen/gesundheit-pflege/krankenversicherung/freiwillig-versichert-in-der-gesetzlichen-krankenkasse-das-muessen-sie-wissen-83661
+  - title: "Verbraucherzentrale: Wie wechsle ich von der privaten in die gesetzliche Krankenversicherung? (26 Feb 2026)"
+    url: https://www.verbraucherzentrale.de/wissen/gesundheit-pflege/krankenversicherung/wie-wechsle-ich-von-der-privaten-in-die-gesetzliche-krankenversicherung-41289
+  - title: "Verbraucherzentrale: Private Krankenversicherung: Nicht für jeden sinnvoll (17 Sep 2026)"
+    url: https://www.verbraucherzentrale.de/wissen/gesundheit-pflege/krankenversicherung/private-krankenversicherung-nicht-fuer-jeden-sinnvoll-13884
+  - title: "Make it in Germany (Federal Government): Visa for freelance business"
+    url: https://www.make-it-in-germany.com/en/working-in-germany/starting-business/visa/visa-for-freelance-business
+  - title: "§ 9 SGB V, Freiwillige Versicherung (gesetze-im-internet.de)"
+    url: https://www.gesetze-im-internet.de/sgb_5/__9.html
+  - title: "§ 188 SGB V, Beginn der freiwilligen Mitgliedschaft (automatic continuation, Abs. 4) (gesetze-im-internet.de)"
+    url: https://www.gesetze-im-internet.de/sgb_5/__188.html
+  - title: "§ 175 SGB V, Ausübung des Wahlrechts (gesetze-im-internet.de)"
+    url: https://www.gesetze-im-internet.de/sgb_5/__175.html
+  - title: "§ 240 SGB V, Beitragspflichtige Einnahmen freiwilliger Mitglieder (gesetze-im-internet.de)"
+    url: https://www.gesetze-im-internet.de/sgb_5/__240.html
+  - title: "§ 243 SGB V, Ermäßigter Beitragssatz (gesetze-im-internet.de)"
+    url: https://www.gesetze-im-internet.de/sgb_5/__243.html
+  - title: "Bundesministerium für Gesundheit: Bekanntmachung des durchschnittlichen Zusatzbeitragssatzes für 2026 (Bundesanzeiger, 10 Nov 2025)"
+    url: "https://www.bundesanzeiger.de/pub/publication/oUJYVk8GYRXybnb9Y4h/content/oUJYVk8GYRXybnb9Y4h/BAnz%20AT%2010.11.2025%20B7.pdf"
+  - title: "vdek: BMG sets the average Zusatzbeitrag for 2027 (2026 press release)"
+    url: https://www.vdek.com/presse/pressemitteilungen/2026/zusatzbeitragssatz-2027-festlegung-bmg.html
+  - title: "Bundesrat document 576/26: Sozialversicherungsrechengrößen-Verordnung 2027 (draft ordinance)"
+    url: https://dserver.bundestag.de/brd/2026/0576-26.pdf
+  - title: "§ 10 EStG, Sonderausgaben (Abs. 1 Nr. 3: basic cover, 4% reduction with Krankengeld; Abs. 4: deductible beyond the €2,800 limit) (gesetze-im-internet.de)"
+    url: https://www.gesetze-im-internet.de/estg/__10.html
+  - title: "Bundesgesetzblatt: GKV-Beitragssatzstabilisierungsgesetz, BGBl. 2026 I Nr. 228 (spouse surcharge from 2028, new § 242b SGB V)"
+    url: https://www.recht.bund.de/bgbl/1/2026/228/VO.html
+  - title: "GKV-Spitzenverband: Beitragsverfahrensgrundsätze Selbstzahler, as of 1 January 2025 (§ 6 Abs. 3a, § 6a: lower provisional contributions if income falls by more than a quarter)"
+    url: https://www.gkv-spitzenverband.de/media/dokumente/krankenversicherung_1/grundprinzipien_1/finanzierung/beitragsbemessung/2025-01-01_Einheitliche_Grundsaetze_zur_Beitragsbemessung_freiwilliger_Mitglieder_Stand_01_01_2025.pdf
+  - title: "§ 47 SGB V, Höhe und Berechnung des Krankengeldes (gesetze-im-internet.de)"
+    url: https://www.gesetze-im-internet.de/sgb_5/__47.html
+  - title: "krankenkassen.de: Wahltarif Krankengeld für Selbstständige"
+    url: https://www.krankenkassen.de/gesetzliche-krankenkassen/leistungen-gesetzliche-krankenkassen/wahltarif-erstattung/krankengeld-selbststaendige/
+  - title: "Haufe: Krankengeld (hauptberuflich Selbstständige), Bindungsfrist"
+    url: https://www.haufe.de/sozialwesen/sgb-office-professional/krankengeld-hauptberuflich-selbststaendige-6-bindungsfrist_idesk_PI434_HI2557385.html
+  - title: "Bundesministerium für Gesundheit: Basistarif in der privaten Krankenversicherung"
+    url: https://www.bundesgesundheitsministerium.de/service/begriffe-von-a-z/b/basistarif-in-der-privaten-krankenversicherung
+  - title: "Verbraucherzentrale: Zusatzbeitrag der Krankenkasse, Sonderkündigung und Wechsel"
+    url: https://www.verbraucherzentrale.de/wissen/gesundheit-pflege/krankenversicherung/zusatzbeitrag-der-krankenkasse-sonderkuendigung-und-wechsel-moeglich-10581
+  - title: "GKV-Spitzenverband, DVKA: Häufig gestellte Fragen (EU insurance periods count towards the qualifying period for voluntary insurance; updated 26 May 2026)"
+    url: https://www.dvka.de/de/versicherte/faq/
+  - title: "Künstlersozialkasse (KSK)"
+    url: https://www.kuenstlersozialkasse.de/
+  - title: "Apotheken Umschau: Pflegereform 2027 (explanatory, cabinet decision of 30 Sep 2026)"
+    url: https://www.apotheken-umschau.de/gesundheitspolitik/pflegereform-2027-was-sich-fuer-versicherte-durch-pflegeneuordnungsgesetz-aendert-1532941.html
+  - title: "TK: Sozialversicherungs-Rechengrößen 2026 (reference value €3,955, ceiling €5,812.50)"
+    url: https://www.tk.de/firmenkunden/service/fachthemen/fachthema-beitraege/sozialversicherungs-rechengroessen-2026-2203234
+  - title: "§ 55 SGB XI, Beitragssatz (childless surcharge, child discounts, proof of children; the statutory 3.4% base rate was raised to 3.6% by ordinance from 2025)"
+    url: https://www.gesetze-im-internet.de/sgb_11/__55.html
+  - title: "hkk: Beitragstabelle 2026 für freiwillig Versicherte (care insurance 3.6% / 4.2% applied)"
+    url: https://assets.hkk.de/fileadmin/dateien/allgemeines_uebergeordnet/beitragstabellen/aktuell/260108_hkk_beitragstabelle_freiwillig_versichert_2026.pdf
+faq:
+  - question: Can I work as a freelancer in Germany without health insurance?
+    answer: "No. Health insurance is compulsory for everyone living in Germany. If you apply for a freelancer residence permit, the foreigners authority also asks for proof of cover."
+  - question: What is the minimum health insurance contribution for a freelancer in 2026?
+    answer: "Public insurance calculates your contribution on at least €1,318.33 of income a month. With the 2026 average Zusatzbeitrag of 2.9%, that comes to roughly €270 to €286 a month including care insurance. The exact amount depends on your sick pay option and whether you have children."
+  - question: Do freelancers get sick pay from public insurance?
+    answer: "Only if they choose the 14.6% rate. Krankengeld then starts on the 43rd day of illness. With the reduced 14.0% rate there is no claim, unless you add an optional tariff."
+  - question: Can I go back to public insurance after going private?
+    answer: "Often not. Self-employed people have no right to return. A return generally requires a job that makes you compulsorily insured, being under 55, and earning below the income limit (€77,400 a year in 2026). Family insurance through a spouse is another route."
 ---
 
-{/*
-  Comments like this one are not shown on the page. Delete them when you write the article.
-  Components below work without importing them. Full list: README.md, "Writing an article".
-*/}
-
 <ShortAnswer>
-[The answer in three or four sentences, including the most important caveat. Someone who reads only this box should
-know what to do.]
+    Health insurance is compulsory in Germany. Freelancers choose between public insurance (<Term de="gesetzliche Krankenversicherung" />) and private insurance (<Term de="private Krankenversicherung" />).
 
-[Optional second paragraph.]
+    Public insurance costs a percentage of your profit: in 2026, roughly €270 to €1,260 a month including care insurance, all paid by you. Private insurance is priced by your age and health when you join, and going back to public insurance later is often not possible.
+
+    If you are new to Germany, public insurance may not be open to you. It usually depends on earlier public insurance and on joining within a deadline.
 </ShortAnswer>
 
-## [First question the reader has]
+## Do you have to be insured as a freelancer?
 
-[Short paragraphs. Use the reader's words in headings.] German terms get a chip the first time they appear, like
-<Term de="Krankenkasse" />. Every term must be in `src/data/glossary.ts`.
+Yes. Everyone living in Germany needs health insurance, and that includes freelancers. Unlike employees, you are not signed up automatically. You choose a scheme and apply yourself.
 
-## [Second question]
+If you need a residence permit for freelance work, the <Term de="Ausländerbehörde" /> asks for proof of health insurance. Which kind of policy it accepts can vary. [Make it in Germany](https://www.make-it-in-germany.com/en/working-in-germany/starting-business/visa/visa-for-freelance-business) advises asking your embassy or foreigners authority before you buy.
 
-[Comparison tables: options as columns, attributes as rows, empty first header cell, "Best for" as the last row.
-On phones this turns into cards.]
+This guide is for people whose freelance work is their main job (<Term de="hauptberuflich" /> selbstständig). If you are an employee who freelances on the side, the rules for employees normally apply to you. Insurers look at things such as whether you employ staff and whether your freelance profit clearly exceeds your salary.
 
-<ComparisonTable>
-|              | [Option A] | [Option B] |
-| ------------ | ---------- | ---------- |
-| [Attribute]  | [Value]    | [Value]    |
-| Best for     | [Who]      | [Who]      |
-</ComparisonTable>
+## Which kind of insurance can you join?
 
-<Callout title="[Deadline or real risk]">
-[Use amber callouts only for deadlines and real risks, at most two per article.]
+Freelancers can choose either public or private insurance, whatever they earn. The income limit that applies to employees (the <Term de="Versicherungspflichtgrenze" />, €77,400 a year in 2026) does not apply to you.
+
+You cannot always get into public insurance, though. It depends on your history:
+
+- You are in German public insurance right now, for example as an employee or through a family member (<Term de="Familienversicherung" />). When that cover ends, your <Term de="Krankenkasse" /> automatically continues it as a voluntary membership from the next day, with no minimum insurance period. You can leave only within two weeks of the insurer telling you about this option, and only if you prove you have other cover. This automatic continuation does not apply if the insurer cannot find a residence for you in Germany.
+- You were in German public insurance earlier, but that cover has ended. You can join again as a voluntary member if you were insured for 24 months in the last five years, or for 12 months without a break just before it ended, and you apply within three months.
+- You were in the public system of another EU or EEA country, or Switzerland. Periods in another country's statutory health insurance generally count like German ones towards the same requirement. Private cover there does not count. Bring proof, ideally the form E104 or its electronic successor S041, which the German insurer can also request from your former insurer. Employment contracts, payslips or tax assessments can also work, and in countries with a national health service, proof of residence. Ask the German insurer to confirm in writing that you can join.
+- You come from elsewhere, or you were never in a public scheme. Public insurers can accept you only in limited cases, such as when you can prove statutory insurance abroad. If none of these routes applies, private insurance is usually what remains.
+- You work as an artist or publicist, for example as an author, journalist, editor, designer or composer. The <Term de="Künstlersozialkasse" /> (KSK) can make you a compulsory member of public insurance and pays about half of the contribution. Conditions apply, so check the [KSK website](https://www.kuenstlersozialkasse.de/).
+
+{/* IMAGE: simple decision flowchart. "Were you in German public insurance in the last 5 years?" -> yes: voluntary public insurance possible. "In an EU/EEA/Swiss public scheme?" -> yes: periods may count. "Artist or publicist?" -> yes: KSK. Otherwise -> private insurance. */}
+
+<Callout title="Joining deadline: three months">
+    If you have to join public insurance actively, for example after arriving from another EU country, you must tell the insurer within three months of your previous cover ending. Joining later is not possible. If your previous cover was German public insurance, your insurer may have continued it automatically, so check your letters.
 </Callout>
 
-## [Third question]
+## What does public health insurance cost a freelancer?
 
-[Steps in order:]
+As a voluntary member you pay the whole contribution yourself. There is no employer share. Three parts add up (2026 rates):
 
-1. [First step]
-2. [Second step]
-3. [Third step]
+- Health insurance rate: 14.6% if you want <Term de="Krankengeld" /> (public sick pay, explained below), or 14.0% if you do not. You choose when you join.
+- <Term de="Zusatzbeitrag" />: an extra rate that each insurer sets itself. The official national average for 2026 is 2.9%. Your insurer's own rate can be higher or lower, and it can change during the year.
+- Care insurance (<Term de="Pflegeversicherung" />): 3.6%, or 4.2% if you are 23 or older and have no children. Parents pay 0.25 points less for each child from the second to the fifth, as long as the child is under 25. You have to prove your children to the insurer yourself. Until you do, you pay the childless rate.
 
-{/*
-  More components (delete the ones you don't need):
+Your insurer applies these rates to your monthly income, but never to less than €1,318.33 in 2026. This floor, the <Term de="Mindestbemessungsgrundlage" />, applies even if you earn less or nothing. At the top, contributions stop at €5,812.50 a month (€69,750 a year). That ceiling is the <Term de="Beitragsbemessungsgrenze" />.
 
-  <Callout kind="note" title="Good to know">A neutral side note.</Callout>
+Here is what that means in euros per month, using the 2026 average Zusatzbeitrag:
 
-  <HealthCostCalculator />
+| Rate and situation | Lowest (income up to €1,318.33) | Highest (income from €5,812.50) |
+|---|---|---|
+| 14.0% rate, with children | €270 | €1,192 |
+| 14.0% rate, no children, 23 or older | €278 | €1,226 |
+| 14.6% rate, with children | €278 | €1,226 |
+| 14.6% rate, no children, 23 or older | €286 | €1,261 |
 
-  <ProviderCard name="[Provider]" bestFor="[who it suits]" link="provider-a" highlight />
-  <AffiliateLink slug="provider-a">inline affiliate link</AffiliateLink>
-  → `link` / `slug` must exist in src/data/links.ts, and set hasAffiliateLinks: true above.
+Figures are calculated from the rates above and rounded to the nearest euro. Your insurer's own Zusatzbeitrag will change them.
 
-  Images: put them in src/assets/, import them at the top of this file (below the frontmatter), e.g.
-    import letter from '../../../assets/letters/prepayment.png';
-  then:
-    <Figure src={letter} alt="…" caption="…" />
-    <AnnotatedLetter src={letter} alt="…" title="…" notes={[{ x: 72, y: 12, label: 'Steuernummer', text: '…' }]} />
+German documents write numbers the other way around: 1.318,33 € means €1,318.33.
 
-  Links to other articles: [public vs. private](/health-insurance/public-vs-private)
-*/}
+To see a figure for your own income, use the calculator:
+
+<HealthCostCalculator />
+
+Contributions for basic health and care cover are deductible from your taxable income as <Term de="Sonderausgaben" />, and in full: the usual €2,800 yearly limit for insurance contributions does not cut them. If you pay the 14.6% rate, which includes a claim to Krankengeld, the deductible part of your health insurance contribution is reduced by 4%. In private insurance, only the share for basic benefits counts, not the share for Krankentagegeld or extras. Your insurer reports the amounts to the tax office, so you don't have to work them out yourself.
+
+## How does the insurer decide what you owe?
+
+Your contribution follows your profit, not your revenue. The insurer first sets it provisionally, based on your latest <Term de="Einkommensteuerbescheid" />. That is the income tax assessment from the <Term de="Finanzamt" />.
+
+When the assessment for a later year arrives, the insurer recalculates. The result can be a back payment or a refund. The consumer advice centers suggest keeping reserves if your profit is rising.
+
+A few rules matter in practice:
+
+- Other income counts too. Rental income, interest and similar income are added, up to the ceiling.
+- New freelancers have no assessment yet. You give the insurer an estimate of your profit or a business analysis. The final figure follows your first assessment.
+- If your profit this year is more than 25% below the profit in your last assessment, you can ask for a lower contribution before a new assessment arrives. You prove it with a reduced income tax prepayment notice. The lower amount applies from the month after you apply.
+- Contributions are due on the 15th of the following month. Late payment brings surcharges.
+
+Hand in each assessment promptly. If you do not send it after the insurer has reminded you, the insurer can assume the highest possible income and charge the maximum contribution. You have three years after the year in question. For 2023, the deadline is 31 December 2026. This only applies if the insurer has asked you for proof.
+
+## What happens if you cannot work because of illness?
+
+Employees get sick pay from their employer. Freelancers do not, so a long illness can stop your income.
+
+In public insurance, Krankengeld is a replacement payment that starts on the 43rd day of illness, the start of week 7. You have a claim only if you chose the 14.6% rate. For the first 42 days, nothing replaces your income. Krankengeld is 70% of the income your contributions were last based on. Because contributions stop at the ceiling, the most you can get in 2026 is about €135.63 a day (70% of €5,812.50, divided by 30). If you pay on the minimum income base, it is about €31 a day.
+
+Choosing the 14.6% rate binds you to it for three years. You can still change insurer after 12 months, but the new insurer keeps you on the 14.6% rate until the three years are up.
+
+With the 14.0% rate you pay less and have no claim. Some insurers offer an optional tariff (<Term de="Wahltarif" />) on top that pays earlier or at a different level. Such a tariff ties you to the tariff and to the insurer for three years, and during that time you cannot use the special right to leave after a Zusatzbeitrag rise.
+
+In private insurance, income cover is a separate policy called <Term de="Krankentagegeld" />. You choose when it starts and how much it pays.
+
+## How does private health insurance work?
+
+Private insurers set the price from your age and health when you join, plus the benefits and deductible you choose. Your income does not matter. The premium is predictable, and it does not change when your profit does.
+
+Before you join, the insurer asks health questions (<Term de="Gesundheitsprüfung" />). It can decline you, charge a surcharge or exclude certain conditions. Incomplete or wrong answers can later let the insurer cancel the contract, so answers need to be complete and accurate.
+
+The downsides show up over time:
+
+- Premiums tend to rise over your life. A rule of thumb from Stiftung Warentest in 2019 says that a premium for someone joining at 35 roughly triples by retirement age.
+- They do not fall when your income falls or when you retire.
+- Partners and children need their own contracts. In public insurance, children with little income of their own are covered at no extra cost. A spouse or registered partner with little income is covered at no extra cost until the end of 2027. From 2028, a surcharge of 2.5 percentage points applies for them, unless, for example, you have a child under 12 at home.
+
+Benefits differ too. Private cover often means faster specialist appointments and better dental and hospital options. Public insurance includes things many private tariffs leave out, such as inpatient rehabilitation, more medical aids and psychotherapy.
+
+The <Term de="Basistarif" /> is a private tariff with standard benefits that works as a safety net. Insurers must accept people who are entitled to it, without health questions, surcharges or exclusions. Entitled are, among others, uninsured people who belong to the private system, voluntary public members within six months of becoming free to go private, and private customers whose contract started in 2009 or later. The premium may not exceed the public maximum including the average Zusatzbeitrag: about €1,018 a month in 2026, plus care insurance. Outside the Basistarif, insurers choose their customers.
+
+The consumer advice centers say private cover can make financial sense for single people, and for childless couples who both work. They also say it is not the right choice for everyone.
+
+<Callout title="Private insurance is hard to leave">
+    As a self-employed person you have no right to return to public insurance. A return generally needs a job that makes you compulsorily insured, an age under 55, and a salary below the limit (€77,400 in 2026). Registering in another EU country as a way back is, according to the consumer advice centers, largely closed since 1 January 2026.
+</Callout>
+
+## Public or private: who does each tend to suit?
+
+<ComparisonTable>
+
+    |  | Public (voluntary) | Private |
+    |---|---|---|
+    | How the price is set | Share of your profit, between a floor and a ceiling | Your age, health at sign-up, benefits and deductible |
+    | If your income falls | Contribution falls, down to the floor | Premium stays the same |
+    | If your income rises | Contribution rises, up to the ceiling | Premium stays the same |
+    | Partner and children | Free cover if their own income is low (for a spouse, a surcharge from 2028) | Each person needs a contract |
+    | Sick pay | Krankengeld from day 43 at the 14.6% rate | Separate Krankentagegeld policy |
+    | Getting in | Depends on your insurance history | Insurer can decline, add surcharges or exclude conditions |
+    | Going back later | Possible to stay or change insurer | Usually not possible |
+    | Main downside | At least about €270 a month even on low income; back payments possible | Premiums tend to rise with age and do not fall in retirement |
+    | Best for | Variable or lower income, families with a non-earning partner or children, people who want to keep options open | People in good health with stable income who can carry rising premiums and want private benefits |
+
+</ComparisonTable>
+
+This choice is hard to undo and depends on your health, family plans and income. An independent fee-based adviser (<Term de="Versicherungsberater" />, listed through [bvvb.de](https://www.bvvb.de)) or a licensed broker can compare options for your situation. Some [Verbraucherzentralen](https://www.verbraucherzentrale.de/beratung) offer paid advice as well. For the tax side, ask a tax advisor.
+
+## How do you sign up for public insurance?
+
+1. Check that you can join, and note any three-month deadline.
+2. Compare insurers on their Zusatzbeitrag and on the services you use. Public insurers are free to join and their basic benefits are set by law.
+3. Apply to your chosen insurer on its form for voluntary members. Forms for the self-employed ask you to pick the 14.6% or the 14.0% rate.
+4. Send proof of income: your latest tax assessment, or an estimate of your profit if you are new.
+5. Set up payment so each contribution arrives by the 15th of the following month.
+6. If you need proof for the foreigners authority, ask the insurer for a confirmation letter.
+
+## Can you switch later?
+
+Between public insurers: after 12 months you can change insurer, with two months' notice to the end of a month. If your insurer raises its Zusatzbeitrag, you can leave earlier: you must cancel by the end of the month the rise takes effect. The notice period still applies, so after a rise on 1 January you move on 1 April.
+
+Since the end of July 2026, insurers no longer have to write to you before they raise the Zusatzbeitrag. Check your insurer's rate yourself, for example at the start of each year, so you don't miss the deadline.
+
+From public to private: you can cancel public insurance, but the cancellation only takes effect once you prove you have other cover.
+
+Between private insurers: you usually lose part of the savings reserves your insurer has built up for you, and you may face new health questions.
+
+From private to public: see the warning above.
+
+## What changes in 2027?
+
+The figures below are the planned values for 2027 as of 2 November 2026. They can still change before 1 January:
+
+- The income values (reference value, minimum base, ceiling and the employee income limit) come from a draft ordinance that the federal government adopted. It needs the approval of the Bundesrat, which usually decides in late November.
+- The average Zusatzbeitrag for 2027 has been announced as unchanged at 2.9%. Your insurer still sets its own rate, often in December.
+- The higher care insurance surcharge for people without children is part of a reform that the cabinet approved on 30 September 2026. It only applies if the Bundestag and Bundesrat pass it.
+
+We update this guide when the 2027 values are final. The date at the top of the page shows when we last checked.
+
+| | 2026 | 2027 (planned) |
+|---|---|---|
+| Monthly reference value | €3,955 | €4,130 |
+| Minimum income base for freelancers, per month | €1,318.33 | €1,376.67 |
+| Income ceiling, per month | €5,812.50 | €6,375 |
+| Employee income limit for going private, per year | €77,400 | €84,150 |
+| Average Zusatzbeitrag | 2.9% | 2.9% |
+| Care insurance surcharge, no children | 0.6 points | 0.9 points (planned) |
+
+If these values are confirmed, the maximum monthly contribution rises in 2027 because the ceiling rises, and the lowest contribution rises with the minimum income base.

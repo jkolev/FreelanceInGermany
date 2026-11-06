@@ -14,8 +14,8 @@ export interface GlossaryEntry {
 export const glossary: Record<string, GlossaryEntry> = {
   Anmeldung: { en: 'registering your address at the local citizens’ office' },
   Finanzamt: { en: 'tax office' },
-  Freiberufler: { en: 'liberal professional, a freelancer who does not register a trade' },
-  Gewerbe: { en: 'trade business, which must be registered with the trade office' },
+  Freiberufler: { en: 'liberal professional, a freelancer who does not register a trade', href: '/start/freiberufler-vs-gewerbe' },
+  Gewerbe: { en: 'trade business, which must be registered with the trade office', href: '/start/freiberufler-vs-gewerbe' },
   GKV: { en: 'public health insurance system', href: '/health-insurance/public-vs-private' },
   Krankengeld: { en: 'sick pay from your health insurer, for longer illnesses' },
   Krankenkasse: { en: 'public health insurer', href: '/health-insurance/public-vs-private' },
@@ -31,6 +31,7 @@ export const glossary: Record<string, GlossaryEntry> = {
   'Anlage S': { en: 'tax return form used to declare income from freelance work' },
   Abschreibung: { en: 'depreciation, spreading the cost of a larger purchase over its useful life' },
   BMF: { en: 'Federal Ministry of Finance (Bundesfinanzministerium)' },
+  BFH: { en: 'Federal Fiscal Court (Bundesfinanzhof), Germany’s highest tax court' },
   Bewirtungsbeleg: { en: 'restaurant receipt plus the extra details the tax office requires for client meals' },
   Entfernungspauschale: { en: 'flat allowance per kilometer of one-way distance between home and your workplace' },
   Kleinunternehmer: { en: 'small-business status under which you do not charge VAT and cannot reclaim input VAT' },
@@ -57,6 +58,15 @@ export const glossary: Record<string, GlossaryEntry> = {
   Versicherungsvertreter: { en: 'insurance agent, who sells on behalf of one or more insurers (unlike a broker, who acts for you)' },
   Wahltarif:{ en:'optional extra tariff from a public insurer, for example for earlier sick pay' },
   Versicherungsberater:{ en: 'independent insurance adviser paid by fee, not by commission' },
+  IHK: { en: 'chamber of industry and commerce; every trade business is a compulsory member', href: '/start/freiberufler-vs-gewerbe' },
+  Katalogberufe: { en: 'the professions listed by name in § 18 of the Income Tax Act as freelance work' },
+  Steuerberater: { en: 'licensed tax advisor' },
+  Abfärbetheorie: { en: 'rule under which trade income can turn all of a partnership’s income into trade income' },
+  Gewerbesteuer: { en: 'trade tax, charged by your city on the profit of a trade business', href: '/start/freiberufler-vs-gewerbe' },
+  Hebesatz: { en: 'your city’s trade tax multiplier, which sets how much trade tax you pay' },
+  Einnahmenüberschussrechnung: { en: 'simple profit calculation: income minus expenses, without double-entry bookkeeping' },
+  'Fragebogen zur steuerlichen Erfassung': { en: 'tax registration questionnaire you file in ELSTER when you start self-employed work' },
+  Gewerbeamt: { en: 'trade office of your city or district, where a trade business is registered' },
 };
 
 export const glossaryId = (term: string) =>

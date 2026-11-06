@@ -11,7 +11,7 @@ Status: `to write` · `draft` · `review` · `live`
 | 2 | Public vs. private health insurance for freelancers | health-insurance | `public-vs-private` | comparison | Insurance affiliates, broker referrals | live |
 | 3 | How much public health insurance costs freelancers (with calculator) | health-insurance | `public-cost` | tool | Insurance affiliates | review |
 | 4 | How to become a freelancer in Germany: step by step | start | `become-a-freelancer` | pillar | Banking, accounting software | to write |
-| 5 | Freiberufler vs. Gewerbe: which one are you? | start | `freiberufler-vs-gewerbe` | cluster | Accounting software | to write |
+| 5 | Freiberufler vs. Gewerbe: which one are you? | start | `freiberufler-vs-gewerbe` | cluster | Accounting software | live |
 | 6 | Getting your tax number: the tax registration questionnaire in English | start | `tax-registration-questionnaire` | cluster | Accounting software, tax advisor leads | to write |
 | 7 | Best business bank accounts for freelancers | banking | `business-bank-accounts` | comparison | Bank affiliates | to write |
 | 8 | Best accounting software for freelancers in English | taxes | `accounting-software` | comparison | Accounting software | to write |

@@ -3,5 +3,4 @@ Allow: /
 Disallow: /go/
 Disallow: /api/
 
-# TODO: update the domain
-Sitemap: https://www.example.com/sitemap-index.xml
+Sitemap: https://freelancegermany.com/sitemap-index.xml

@@ -6,8 +6,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  // TODO: replace with your real domain before the first deploy
-  site: 'https://www.example.com',
+  site: 'https://freelancegermany.com',
   output: 'static',
   trailingSlash: 'never',
   build: { format: 'file' },

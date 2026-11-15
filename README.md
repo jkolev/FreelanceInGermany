@@ -71,7 +71,8 @@ Set `draft: true` in the frontmatter to hide an article from the build (it still
 
 ## Before launch
 
-- [ ] Real domain in `astro.config.mjs` (`site`) and `public/robots.txt`
+- [x] Real domain in `astro.config.mjs` (`site`) and `public/robots.txt`
+- [ ] Switch `public/robots.txt` to the launch version (it currently blocks search engines)
 - [ ] Author name and bio in `src/data/site.ts`, About page text
 - [ ] Impressum and privacy policy completed (see TODOs)
 - [ ] Real affiliate URLs in `src/data/links.ts`, real provider names in articles

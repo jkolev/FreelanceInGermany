@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1332" width="720" height="1332" role="img" aria-labelledby="diagram-title diagram-desc" font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <title id="diagram-title">How to become a freelancer in Germany: nine steps</title>
+  <desc id="diagram-desc">A top-to-bottom flow chart of nine steps. Start of work leads to: 1 register your address, then a wait for the tax ID letter; 2 check your residence permit (dashed, non-EU/EEA/Swiss citizens only); 3 create your ELSTER account, then a wait for the activation code; 4 decide between Freiberufler and Gewerbe; 5 register your trade (dashed, Gewerbe only); 6 send the tax registration questionnaire via ELSTER; 7 arrange health insurance; 8 decide on VAT and set up invoices, bank account and bookkeeping; 9 look at pension and other insurance. An amber bar from the start of work to step 6 marks the one-month deadline to tell the tax office.</desc>
+
+  <!-- Card background -->
+  <rect x="0.5" y="0.5" width="719" height="1331" rx="16" fill="#ffffff" stroke="#e4e4de" stroke-width="1"/>
+
+  <!-- Deadline banner (start of work) plus bar running down to the end of step 6 -->
+  <path d="M32 20 H688 A12 12 0 0 1 700 32 V112 A12 12 0 0 1 688 124 H36 V992 A8 8 0 0 1 28 1000 A8 8 0 0 1 20 992 V32 A12 12 0 0 1 32 20 Z" fill="#fff6e3" stroke="#ebc877" stroke-width="2" stroke-linejoin="round"/>
+  <text x="56" y="50" font-size="15" font-weight="600" fill="#5c3d00">Start of work</text>
+  <text x="56" y="76" font-size="18" font-weight="700" fill="#5c3d00">One-month deadline: tell the tax office</text>
+  <text x="56" y="100" font-size="18" font-weight="700" fill="#5c3d00">within 1 month of starting work</text>
+
+  <!-- Connecting arrows -->
+  <g fill="#c9ccc4" stroke="#c9ccc4" stroke-width="3" stroke-linejoin="round">
+    <path d="M90 124 V141 M90 152 l-8 -11 h16 z"/>
+    <path d="M90 224 V237 M90 248 l-8 -11 h16 z"/>
+    <path d="M90 292 V305 M90 316 l-8 -11 h16 z"/>
+    <path d="M90 430 V443 M90 454 l-8 -11 h16 z"/>
+    <path d="M90 546 V559 M90 570 l-8 -11 h16 z"/>
+    <path d="M90 614 V627 M90 638 l-8 -11 h16 z"/>
+    <path d="M90 710 V723 M90 734 l-8 -11 h16 z"/>
+    <path d="M90 826 V839 M90 850 l-8 -11 h16 z"/>
+    <path d="M90 1000 V1013 M90 1024 l-8 -11 h16 z"/>
+    <path d="M90 1096 V1109 M90 1120 l-8 -11 h16 z"/>
+    <path d="M90 1212 V1225 M90 1236 l-8 -11 h16 z"/>
+  </g>
+
+  <!-- Step 1 -->
+  <rect x="56" y="152" width="644" height="72" rx="14" fill="#f2f7f6" stroke="#d5e5e2" stroke-width="2"/>
+  <circle cx="90" cy="188" r="18" fill="#0f6e6e"/>
+  <text x="90" y="194.5" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">1</text>
+  <text x="128" y="195" font-size="20" font-weight="600" fill="#1c2526">Register your address (Anmeldung)</text>
+
+  <!-- Waiting point after step 1 -->
+  <rect x="56" y="248" width="644" height="44" rx="22" fill="#fff6e3" stroke="#ebc877" stroke-width="2"/>
+  <text x="128" y="276" font-size="17" font-weight="600" fill="#5c3d00">Tax ID letter: can take 4–8 weeks</text>
+
+  <!-- Step 2 (conditional) -->
+  <rect x="56" y="316" width="644" height="114" rx="14" fill="#f2f7f6" stroke="#55606b" stroke-width="2" stroke-dasharray="8 6"/>
+  <circle cx="90" cy="352" r="18" fill="#0f6e6e"/>
+  <text x="90" y="358.5" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">2</text>
+  <text x="128" y="359" font-size="20" font-weight="600" fill="#1c2526">Check your residence permit allows</text>
+  <text x="128" y="384" font-size="20" font-weight="600" fill="#1c2526">self-employment</text>
+  <text x="128" y="409" font-size="16" fill="#55606b">Only if you are not an EU/EEA/Swiss citizen</text>
+
+  <!-- Step 3 -->
+  <rect x="56" y="454" width="644" height="92" rx="14" fill="#f2f7f6" stroke="#d5e5e2" stroke-width="2"/>
+  <circle cx="90" cy="490" r="18" fill="#0f6e6e"/>
+  <text x="90" y="496.5" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">3</text>
+  <text x="128" y="497" font-size="20" font-weight="600" fill="#1c2526">Create your ELSTER account</text>
+  <text x="128" y="522" font-size="16" fill="#55606b">(the tax office’s online portal)</text>
+
+  <!-- Waiting point after step 3 -->
+  <rect x="56" y="570" width="644" height="44" rx="22" fill="#fff6e3" stroke="#ebc877" stroke-width="2"/>
+  <text x="128" y="598" font-size="17" font-weight="600" fill="#5c3d00">ELSTER activation code: usually about 2 weeks</text>
+
+  <!-- Step 4 -->
+  <rect x="56" y="638" width="644" height="72" rx="14" fill="#f2f7f6" stroke="#d5e5e2" stroke-width="2"/>
+  <circle cx="90" cy="674" r="18" fill="#0f6e6e"/>
+  <text x="90" y="680.5" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">4</text>
+  <text x="128" y="681" font-size="20" font-weight="600" fill="#1c2526">Work out: Freiberufler or Gewerbe?</text>
+
+  <!-- Step 5 (conditional) -->
+  <rect x="56" y="734" width="644" height="92" rx="14" fill="#f2f7f6" stroke="#55606b" stroke-width="2" stroke-dasharray="8 6"/>
+  <circle cx="90" cy="770" r="18" fill="#0f6e6e"/>
+  <text x="90" y="776.5" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">5</text>
+  <text x="128" y="777" font-size="20" font-weight="600" fill="#1c2526">Register your trade at the trade office</text>
+  <text x="128" y="802" font-size="16" fill="#55606b">Only if you are Gewerbe (skip if Freiberufler)</text>
+
+  <!-- Step 6 -->
+  <rect x="56" y="850" width="644" height="150" rx="14" fill="#f2f7f6" stroke="#d5e5e2" stroke-width="2"/>
+  <circle cx="90" cy="886" r="18" fill="#0f6e6e"/>
+  <text x="90" y="892.5" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">6</text>
+  <text x="128" y="893" font-size="20" font-weight="600" fill="#1c2526">Send the tax registration questionnaire</text>
+  <text x="128" y="918" font-size="16" fill="#55606b">(Fragebogen zur steuerlichen Erfassung) via ELSTER</text>
+  <line x1="128" y1="938" x2="684" y2="938" stroke="#d5e5e2" stroke-width="2"/>
+  <text x="128" y="962" font-size="15" fill="#55606b"><tspan font-weight="600" fill="#1c2526">Tax ID not here yet?</tspan> ELSTER’s email-only registration</text>
+  <text x="128" y="984" font-size="15" fill="#55606b">lets you send the questionnaire anyway.</text>
+
+  <!-- Step 7 -->
+  <rect x="56" y="1024" width="644" height="72" rx="14" fill="#f2f7f6" stroke="#d5e5e2" stroke-width="2"/>
+  <circle cx="90" cy="1060" r="18" fill="#0f6e6e"/>
+  <text x="90" y="1066.5" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">7</text>
+  <text x="128" y="1067" font-size="20" font-weight="600" fill="#1c2526">Arrange health insurance</text>
+
+  <!-- Step 8 -->
+  <rect x="56" y="1120" width="644" height="92" rx="14" fill="#f2f7f6" stroke="#d5e5e2" stroke-width="2"/>
+  <circle cx="90" cy="1156" r="18" fill="#0f6e6e"/>
+  <text x="90" y="1162.5" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">8</text>
+  <text x="128" y="1163" font-size="20" font-weight="600" fill="#1c2526">Decide on VAT, then set up invoices,</text>
+  <text x="128" y="1188" font-size="20" font-weight="600" fill="#1c2526">bank account and bookkeeping</text>
+
+  <!-- Step 9 -->
+  <rect x="56" y="1236" width="644" height="72" rx="14" fill="#f2f7f6" stroke="#d5e5e2" stroke-width="2"/>
+  <circle cx="90" cy="1272" r="18" fill="#0f6e6e"/>
+  <text x="90" y="1278.5" font-size="18" font-weight="700" fill="#ffffff" text-anchor="middle">9</text>
+  <text x="128" y="1279" font-size="20" font-weight="600" fill="#1c2526">Look at pension and other insurance</text>
+</svg>

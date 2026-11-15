@@ -12,9 +12,9 @@ export const site = {
   description:
     'Health insurance, taxes, registration and banking for freelancers in Germany: clear answers, honest comparisons and calculators.',
   author: {
-    name: 'Julian',
-    // TODO: short bio shown under every article
-    bio: 'Short bio: who you are, why you built this site, and how articles are checked.',
+    name: 'Julian Radkov',
+    // Short bio shown under every article
+    bio: 'Software engineer in Berlin with more than 20 years of experience, who has taken on freelance projects alongside employment. Every article is checked against the law and official sources.',
     url: '/about',
     photo: authorPhoto,
   },

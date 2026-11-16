@@ -21,11 +21,11 @@ const action = site.newsletterAction || undefined;
         required
         autocomplete="email"
         placeholder="you@example.com"
-        class="min-h-12 min-w-0 flex-[1_1_200px] rounded-lg border border-band-line bg-band-field px-4 text-base text-white placeholder:text-band-ink/70"
+        class="min-h-12 min-w-0 flex-[1_1_200px] rounded-lg border border-band-field-line bg-band-field px-4 text-base text-white placeholder:text-band-ink/70"
       />
       <button
         type="submit"
-        class="min-h-12 cursor-pointer rounded-lg border-0 bg-white px-5 text-base font-semibold text-[#0f2e2e] hover:bg-[#e8f2f1]"
+        class="min-h-12 cursor-pointer rounded-lg border-0 bg-white px-5 text-base font-semibold text-band hover:bg-band-ink"
         disabled={!action}
         title={action ? undefined : 'Set site.newsletterAction in src/data/site.ts'}
       >

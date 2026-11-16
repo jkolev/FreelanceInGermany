@@ -97,6 +97,13 @@ export const glossary: Record<string, GlossaryEntry> = {
   'Zusammenfassende Meldung': { en: 'EC Sales List: quarterly report of sales to business clients in other EU countries' },
   Lohnsteuerhilfeverein: { en: 'income tax aid association for employees; not allowed to help anyone with self-employed income' },
   StBVV: { en: 'Steuerberatervergütungsverordnung, the official fee schedule for tax advisors' },
+  Umsatzsteuervoranmeldung: { en: 'advance VAT return, filed monthly or quarterly', href: '/taxes/vat-returns' },
+  Umsatzsteuererklärung: { en: 'annual VAT return that settles the final figure for the year' },
+  Dauerfristverlängerung: { en: 'permanent one-month extension of the deadlines for advance VAT returns' },
+  Sondervorauszahlung: { en: 'yearly deposit of one eleventh of last year’s VAT prepayments, paid by monthly filers with the extension' },
+  Verspätungszuschlag: { en: 'surcharge for filing a tax return late' },
+  Säumniszuschlag: { en: 'surcharge for paying tax late: 1% of the unpaid amount per month started' },
+  Kennzahl: { en: 'numbered field on a German tax form (Kz)' },
 };
 
 export const glossaryId = (term: string) =>

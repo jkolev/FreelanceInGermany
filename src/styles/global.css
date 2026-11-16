@@ -15,6 +15,8 @@
   --c-muted: #55606a;
   --c-line: #e4e4de;
   --c-line-strong: #c9ccc4;
+  /* Visible edge of form fields and secondary buttons: at least 3:1 against page and surface (WCAG 1.4.11) */
+  --c-field-line: #868c85;
   --c-accent: #0f6e6e;
   --c-accent-hover: #0a5252;
   --c-accent-soft: #f2f7f6;
@@ -30,6 +32,8 @@
   --c-band-ink: #c8dcda;
   --c-band-field: #163a3a;
   --c-band-line: #3d5e5c;
+  /* Edge of input fields on the band: at least 3:1 against band-field */
+  --c-band-field-line: #6f9592;
 }
 
 /*
@@ -51,6 +55,7 @@
     --c-muted: #a3aeac;
     --c-line: #2c3535;
     --c-line-strong: #3d4848;
+    --c-field-line: #667372;
     --c-accent: #5cc4bd;
     --c-accent-hover: #7fd6d0;
     --c-accent-soft: #15292a;
@@ -66,6 +71,7 @@
     --c-band-ink: #b4cbc9;
     --c-band-field: #123030;
     --c-band-line: #2f4f4d;
+    --c-band-field-line: #5f8784;
   }
 }
 :root[data-theme='dark'] {
@@ -79,6 +85,7 @@
   --c-muted: #a3aeac;
   --c-line: #2c3535;
   --c-line-strong: #3d4848;
+  --c-field-line: #667372;
   --c-accent: #5cc4bd;
   --c-accent-hover: #7fd6d0;
   --c-accent-soft: #15292a;
@@ -94,6 +101,7 @@
   --c-band-ink: #b4cbc9;
   --c-band-field: #123030;
   --c-band-line: #2f4f4d;
+  --c-band-field-line: #5f8784;
 }
 
 @theme inline {
@@ -108,6 +116,7 @@
   --color-muted: var(--c-muted);
   --color-line: var(--c-line);
   --color-line-strong: var(--c-line-strong);
+  --color-field-line: var(--c-field-line);
   --color-accent: var(--c-accent);
   --color-accent-hover: var(--c-accent-hover);
   --color-accent-soft: var(--c-accent-soft);
@@ -123,6 +132,7 @@
   --color-band-ink: var(--c-band-ink);
   --color-band-field: var(--c-band-field);
   --color-band-line: var(--c-band-line);
+  --color-band-field-line: var(--c-band-field-line);
 
   --radius-card: 14px;
 }
@@ -140,6 +150,10 @@
     outline: 2px solid var(--c-accent);
     outline-offset: 2px;
   }
+  /* The accent is too close to the dark band for a visible ring (2.4:1); use the band's light text color */
+  .bg-band :focus-visible {
+    outline-color: var(--c-band-ink);
+  }
 }
 
 @layer components {
@@ -156,7 +170,7 @@
     @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-lg px-6 font-semibold no-underline transition-colors bg-accent text-on-accent hover:bg-accent-hover hover:text-on-accent;
   }
   .btn-secondary {
-    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-lg px-6 font-semibold no-underline transition-colors border border-line-strong bg-surface text-ink hover:border-accent hover:text-ink;
+    @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-lg px-6 font-semibold no-underline transition-colors border border-field-line bg-surface text-ink hover:border-accent hover:text-ink;
   }
   .eyebrow {
     @apply text-[13px] font-semibold tracking-[0.06em] uppercase;
@@ -165,7 +179,7 @@
     @apply inline-block rounded-full px-2.5 py-1 text-xs font-semibold;
   }
   .field {
-    @apply min-h-12 w-full rounded-lg border border-line-strong bg-surface px-3.5 text-[17px] text-ink focus:border-accent;
+    @apply min-h-12 w-full rounded-lg border border-field-line bg-surface px-3.5 text-[17px] text-ink focus:border-accent;
   }
 }
 

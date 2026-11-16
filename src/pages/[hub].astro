@@ -15,7 +15,11 @@ const articles = await getArticles((a) => a.data.hub === hub.id);
 const pillar = articles.find((a) => a.data.type === 'pillar');
 const rest = articles.filter((a) => a !== pillar);
 ---
-<BaseLayout title={hub.title} description={`${hub.title} for freelancers in Germany: ${hub.description.toLowerCase()}.`} current={hub.id}>
+<BaseLayout
+  title={hub.title}
+  description={hub.intro ?? `${hub.title} for freelancers in Germany: ${hub.description.toLowerCase()}.`}
+  current={hub.id}
+>
   <section class="border-b border-line bg-surface">
     <div class="container-page py-12">
       <Breadcrumb items={[]} />
@@ -23,7 +27,7 @@ const rest = articles.filter((a) => a !== pillar);
         <Icon name={hub.icon} size={32} />
       </div>
       <h1 class="m-0 mt-3 mb-3 text-[34px] leading-tight font-bold tracking-[-0.025em] sm:text-[42px]">{hub.title}</h1>
-      <p class="m-0 max-w-2xl text-xl text-muted">{hub.description}.</p>
+      <p class="m-0 max-w-2xl text-xl leading-relaxed text-muted">{hub.intro ?? `${hub.description}.`}</p>
       {
         pillar && (
           <a href={`/${pillar.id}`} class="btn-primary mt-8">

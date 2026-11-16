@@ -340,7 +340,7 @@ const jsonLd = [
   .toc {
     margin: 2rem 0 0;
     padding: 1rem 1.25rem;
-    border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+    border: 1px solid var(--c-line);
     border-radius: 0.75rem;
     font-size: 0.95rem;
   }
@@ -391,12 +391,12 @@ const jsonLd = [
     gap: 1rem 1.5rem;
     margin: 0 0 1rem;
     padding: 1.25rem;
-    border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+    border: 1px solid var(--c-line);
     border-radius: 0.75rem;
   }
   .facts dt {
     font-size: 0.85rem;
-    opacity: 0.7;
+    color: var(--c-muted);
   }
   .facts dd {
     margin: 0.15rem 0 0;
@@ -417,12 +417,12 @@ const jsonLd = [
     padding: 0 0 0.6rem;
     font-size: 0.9rem;
     text-align: left;
-    opacity: 0.75;
+    color: var(--c-muted);
   }
   th,
   td {
     padding: 0.6rem 0.75rem;
-    border-bottom: 1px solid color-mix(in srgb, currentColor 15%, transparent);
+    border-bottom: 1px solid var(--c-line);
     text-align: right;
     white-space: nowrap;
   }
@@ -439,8 +439,9 @@ const jsonLd = [
   }
   .callout {
     padding: 0.9rem 1.1rem;
-    border-left: 4px solid color-mix(in srgb, currentColor 35%, transparent);
-    background: color-mix(in srgb, currentColor 6%, transparent);
+    border-left: 4px solid var(--c-warn-line);
+    background: var(--c-warn-bg);
+    color: var(--c-warn-ink);
     border-radius: 0.25rem;
   }
 </style>

@@ -58,6 +58,11 @@ const tocExtra = [
 ];
 ---
 <BaseLayout title={data.title} description={data.description} current={hub.id} jsonLd={jsonLd} ogType="article">
+  <Fragment slot="head">
+    <meta property="article:published_time" content={data.published.toISOString()} />
+    <meta property="article:modified_time" content={(data.lastChecked > data.published ? data.lastChecked : data.published).toISOString()} />
+    <meta property="article:section" content={hub.title} />
+  </Fragment>
   <div class="container-page pt-10">
     <Breadcrumb items={[{ href: `/${hub.id}`, label: hub.title }]} />
     <h1 class="m-0 mb-4 max-w-[820px] text-[34px] leading-[1.15] font-bold tracking-[-0.025em] sm:text-[42px]">

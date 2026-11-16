@@ -13,6 +13,8 @@
     "deploy": "npm run build && wrangler deploy",
     "check": "astro check",
     "test": "vitest run",
+    "og": "node scripts/build-og.mjs",
+    "icons": "node scripts/build-favicon.mjs",
     "astro": "astro"
   },
   "dependencies": {

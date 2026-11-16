@@ -15,7 +15,7 @@ Status: `to write` · `draft` · `review` · `live`
 | 6 | Getting your tax number: the tax registration questionnaire in English | start | `tax-registration-questionnaire` | cluster | Accounting software, tax advisor leads | review |
 | 7 | Best business bank accounts for freelancers | banking | `business-bank-accounts` | comparison | Bank affiliates | to write |
 | 8 | Best accounting software for freelancers in English | taxes | `accounting-software` | comparison | Accounting software | to write |
-| 9 | Taxes for freelancers in Germany: the complete guide | taxes | `freelancer-taxes` | pillar | Tax software, tax advisor leads | to write |
+| 9 | Taxes for freelancers in Germany: the complete guide | taxes | `freelancer-taxes` | pillar | Tax software, tax advisor leads | live |
 | 10 | Freelancer numbers: every threshold and rate for the coming year | — | page `/freelancer-numbers` | yearly page | Links into all hubs | to write |
 | 11 | Private health insurance: costs in old age and switching back | health-insurance | `private-costs-old-age` | cluster | Broker referrals | to write |
 | 12 | Expat health insurance: when it is accepted and when it is not | health-insurance | `expat-health-insurance` | cluster | Insurance affiliates | to write |

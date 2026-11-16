@@ -110,6 +110,10 @@ export const glossary: Record<string, GlossaryEntry> = {
   'SEPA-Lastschriftmandat': { en: 'direct debit mandate that lets the tax office collect payments from your account' },
   Nachzahlungszinsen: { en: 'interest on tax back-payments, charged from 15 months after the end of the tax year' },
   Einspruch: { en: 'formal objection to a tax notice, due within one month' },
+  Einkommensteuer: { en: 'income tax, charged on your yearly taxable income', href: '/taxes/freelancer-taxes' },
+  BZSt: { en: 'Federal Central Tax Office, which issues tax IDs and VAT IDs' },
+  Solidaritätszuschlag: { en: 'solidarity surcharge of 5.5% of income tax, charged only above a high threshold' },
+  'Reverse-Charge-Verfahren': { en: 'reverse charge: the business client, not you, accounts for the VAT' },
 };
 
 export const glossaryId = (term: string) =>

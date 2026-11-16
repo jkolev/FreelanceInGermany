@@ -54,6 +54,10 @@ results match insurer tables to the cent). Both the browser widget (`HealthCostC
 page's tables, FAQ and JSON-LD (via `buildGkvPage()` in `src/lib/gkv-page.ts`) call it; never re-implement the formula.
 Reference cases from insurer tables are in `src/lib/gkv.test.ts`, so run `npm test` after changing rates or the maths.
 
+**Income tax maths** for the prepayment estimator works the same way: tariff, solidarity surcharge and allowances in
+`src/data/income-tax.ts` (update every January with `rates.ts`), formulas in `src/lib/income-tax.ts`, reference values from
+the official basic and splitting tables in `src/lib/income-tax.test.ts`. The widget is `TaxPrepaymentCalculator.astro`.
+
 **Fact-checking convention:** unverified claims in articles are marked `[VERIFY: …]` and resolved against primary
 sources (law texts on gesetze-im-internet.de, BGBl., official bodies) before an article gets `draft: false`.
 

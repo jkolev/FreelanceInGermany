@@ -21,7 +21,7 @@ export const glossary: Record<string, GlossaryEntry> = {
   Krankenkasse: { en: 'public health insurer', href: '/health-insurance/public-vs-private' },
   PKV: { en: 'private health insurance', href: '/health-insurance/public-vs-private' },
   Steuernummer: { en: 'tax number, issued by your tax office; it goes on your invoices' },
-  Vorauszahlung: { en: 'tax prepayment, set by the tax office and due on fixed dates' },
+  Vorauszahlung: { en: 'tax prepayment, set by the tax office and due on fixed dates', href: '/taxes/tax-prepayments' },
   'Homeoffice-Pauschale': { en: 'flat rate of 6 euros per home-office day, up to 1,260 euros a year; no dedicated room needed' },
   Betriebsausgaben: { en: 'business expenses caused by your self-employed work; they reduce your taxable profit' },
   Fahrtenbuch: { en: 'driver’s logbook you keep yourself to prove business and private trips; it must meet strict formal rules' },
@@ -104,6 +104,12 @@ export const glossary: Record<string, GlossaryEntry> = {
   Verspätungszuschlag: { en: 'surcharge for filing a tax return late' },
   Säumniszuschlag: { en: 'surcharge for paying tax late: 1% of the unpaid amount per month started' },
   Kennzahl: { en: 'numbered field on a German tax form (Kz)' },
+  Vorauszahlungsbescheid: { en: 'notice from the tax office setting your quarterly tax prepayments', href: '/taxes/tax-prepayments' },
+  Steuerbescheid: { en: 'tax assessment: the tax office’s notice of what you owe for a year' },
+  Grundfreibetrag: { en: 'basic tax-free allowance: income up to this amount is not taxed' },
+  'SEPA-Lastschriftmandat': { en: 'direct debit mandate that lets the tax office collect payments from your account' },
+  Nachzahlungszinsen: { en: 'interest on tax back-payments, charged from 15 months after the end of the tax year' },
+  Einspruch: { en: 'formal objection to a tax notice, due within one month' },
 };
 
 export const glossaryId = (term: string) =>

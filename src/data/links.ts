@@ -27,14 +27,4 @@ export const affiliateLinks: Record<string, AffiliateLink> = {
     // and set subIdParam to the parameter their platform uses for sub-IDs
     url: 'https://feather-insurance.com/',
   },
-  'provider-a': {
-    merchant: '[Provider A]',
-    url: 'https://example.com/?ref=YOUR_ID',
-    subIdParam: 'subid',
-  },
-  'provider-b': {
-    merchant: '[Provider B]',
-    url: 'https://example.org/?ref=YOUR_ID',
-    subIdParam: 'subid',
-  },
 };

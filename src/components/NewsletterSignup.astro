@@ -2,6 +2,9 @@
 import { site } from '../data/site';
 const action = site.newsletterAction || undefined;
 ---
+{/* Hidden until a newsletter provider is set (site.newsletterAction). Before enabling: add it to the privacy policy, and make sure the promised invoice template exists. */}
+{
+  action && (
 <section class="container-page py-14">
   <div class="flex flex-wrap items-center gap-8 rounded-card bg-band p-10 text-white">
     <div class="min-w-0 flex-[999_1_420px]">
@@ -37,3 +40,5 @@ const action = site.newsletterAction || undefined;
     </form>
   </div>
 </section>
+  )
+}

@@ -1,0 +1,123 @@
+---
+import Icon from './Icon.astro';
+import { incomeTax } from '../data/income-tax';
+
+/**
+ * Income tax prepayment estimate for freelancers. Runs entirely in the browser.
+ * Tariff and thresholds live in src/data/income-tax.ts; the maths is in src/lib/income-tax.ts (tested).
+ */
+const eur = (n: number) => n.toLocaleString('en-GB');
+---
+<div class="not-prose card my-8 p-7" data-prepayment-calculator>
+  <div class="mb-5 flex flex-wrap items-center justify-between gap-2">
+    <h3 class="m-0 text-xl leading-snug font-semibold">Tax prepayment estimator</h3>
+    <span class="flex items-center gap-1.5 text-[13px] text-muted">
+      <Icon name="lock" size={14} /> Runs in your browser
+    </span>
+  </div>
+
+  <div class="mb-6 grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4">
+    <div class="flex flex-col gap-1.5">
+      <label for="tp-profit" class="text-sm font-semibold">Expected yearly profit (€)</label>
+      <input id="tp-profit" name="profit" type="number" inputmode="numeric" min="0" step="1000" value="40000" class="field" />
+    </div>
+    <div class="flex flex-col gap-1.5">
+      <label for="tp-filing" class="text-sm font-semibold">How you file</label>
+      <select id="tp-filing" name="filing" class="field">
+        <option value="single">Single</option>
+        <option value="joint">Married, filing jointly (partner without income)</option>
+      </select>
+    </div>
+    <div class="flex flex-col gap-1.5">
+      <label for="tp-church" class="text-sm font-semibold">Church tax</label>
+      <select id="tp-church" name="church" class="field">
+        <option value="0">None</option>
+        <option value="9">9% (most states)</option>
+        <option value="8">8% (Bavaria, Baden-Württemberg)</option>
+      </select>
+    </div>
+    <div class="flex flex-col gap-1.5">
+      <label for="tp-insurance" class="text-sm font-semibold">Health insurance</label>
+      <select id="tp-insurance" name="insurance" class="field">
+        <option value="public">Public, without sick pay</option>
+        <option value="public-sick">Public, with sick pay</option>
+        <option value="own">Private: enter the amount</option>
+      </select>
+    </div>
+    <div class="flex flex-col gap-1.5" data-own-insurance hidden>
+      <label for="tp-own" class="text-sm font-semibold">Deductible insurance per month (€)</label>
+      <input id="tp-own" name="own" type="number" inputmode="decimal" min="0" step="10" value="450" class="field" />
+    </div>
+  </div>
+
+  <div class="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-3" aria-live="polite">
+    <div class="rounded-[10px] bg-accent-soft p-[18px]">
+      <p class="m-0 text-sm text-ink-2">Set aside per quarter</p>
+      <p class="m-0 mt-1 text-[30px] font-bold tracking-[-0.02em] tabular-nums" data-out="quarterly">–</p>
+      <p class="m-0 mt-1 text-sm text-ink-2">Due 10 March, June, September and December</p>
+    </div>
+    <div class="rounded-[10px] bg-subtle p-[18px] text-[15px] leading-relaxed text-ink-2">
+      <p class="m-0 flex justify-between gap-4"><span>Income tax</span><span class="tabular-nums" data-out="tax">–</span></p>
+      <p class="m-0 flex justify-between gap-4"><span>Solidarity surcharge</span><span class="tabular-nums" data-out="soli">–</span></p>
+      <p class="m-0 flex justify-between gap-4"><span>Church tax</span><span class="tabular-nums" data-out="church">–</span></p>
+      <p class="m-0 flex justify-between gap-4 font-semibold text-ink"><span>Per year</span><span class="tabular-nums" data-out="total">–</span></p>
+    </div>
+  </div>
+
+  <p class="m-0 mt-3 text-sm text-ink-2" data-out="note"></p>
+
+  <p class="m-0 mt-4 text-sm leading-relaxed text-muted">
+    How this is estimated: your profit minus deductible health and care insurance and a €{eur(incomeTax.specialExpensesAllowance)}
+    flat allowance, taxed at the {incomeTax.year} rates (tax-free up to €{eur(incomeTax.zone1End)}). Not included: children,
+    other income, pension contributions and other deductions. Your real prepayments are set by the tax office, usually from
+    your last assessment. An estimate, not a quote.
+  </p>
+</div>
+
+<script>
+  import { estimatePrepayments, publicInsuranceDeduction } from '../lib/income-tax';
+
+  const eur = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'EUR' });
+  const eur0 = new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 });
+
+  for (const root of document.querySelectorAll<HTMLElement>('[data-prepayment-calculator]')) {
+    const input = (name: string) => root.querySelector(`[name="${name}"]`) as HTMLInputElement | HTMLSelectElement;
+    const out = (name: string) => root.querySelector(`[data-out="${name}"]`) as HTMLElement;
+    const ownField = root.querySelector('[data-own-insurance]') as HTMLElement;
+
+    const update = () => {
+      const profit = Math.max(Number(input('profit').value) || 0, 0);
+      const insurance = input('insurance').value;
+      ownField.hidden = insurance !== 'own';
+
+      const deduction =
+        insurance === 'own'
+          ? Math.max(Number(input('own').value) || 0, 0) * 12
+          : publicInsuranceDeduction(profit, insurance === 'public-sick');
+
+      const r = estimatePrepayments({
+        yearlyProfit: profit,
+        joint: input('filing').value === 'joint',
+        churchTaxRate: Number(input('church').value) as 0 | 8 | 9,
+        insuranceDeduction: deduction,
+      });
+
+      out('quarterly').textContent = eur.format(r.quarterly);
+      out('tax').textContent = eur.format(r.incomeTax);
+      out('soli').textContent = eur.format(r.solidaritySurcharge);
+      out('church').textContent = eur.format(r.churchTax);
+      out('total').textContent = eur.format(r.total);
+      const base = `Taxable income about ${eur0.format(r.taxableIncome)}, after ${eur0.format(deduction)} of insurance.`;
+      out('note').textContent =
+        r.total === 0
+          ? 'At this profit you would owe no income tax, so the tax office sets no prepayments.'
+          : r.incomeTax < 400
+            ? `${base} Below €400 of income tax a year, the tax office sets no prepayments; you pay with your assessment instead.`
+            : `${base} That is about ${r.shareOfProfit}% of your profit.`;
+    };
+
+    root.addEventListener('input', update);
+    root.addEventListener('change', update);
+    update();
+  }
+</script>

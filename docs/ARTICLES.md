@@ -25,8 +25,8 @@ Status: `to write` · `draft` · `review` · `live`
 | 16 | The freelance visa: residence permits for self-employment | start | `freelance-visa` | cluster | Relocation and lawyer leads | to write |
 | 17 | The small business VAT exemption (Kleinunternehmerregelung) | taxes | `kleinunternehmer` | cluster | Accounting software | live |
 | 18 | How to write a German invoice (with free template) | taxes | `invoice` | cluster | Accounting software, email signups | live |
-| 19 | VAT returns explained (Umsatzsteuervoranmeldung) | taxes | `vat-returns` | cluster | Accounting software | review |
-| 20 | Tax prepayments: why they arrive and how to lower them | taxes | `tax-prepayments` | tool | Tax software | to write |
+| 19 | VAT returns explained (Umsatzsteuervoranmeldung) | taxes | `vat-returns` | cluster | Accounting software | live |
+| 20 | Tax prepayments: why they arrive and how to lower them | taxes | `tax-prepayments` | tool | Tax software | live |
 | 21 | Deductible expenses for freelancers | taxes | `deductible-expenses-for-freelancers` | cluster | Accounting software | live |
 | 22 | Do you need a tax advisor? Costs and finding an English-speaking one | taxes | `tax-advisor` | cluster | Tax advisor leads | live |
 | 23 | Best tax software in English for freelancers | taxes | `tax-software` | comparison | Tax software | to write |

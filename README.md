@@ -24,6 +24,7 @@ Static Astro site with Tailwind, MDX articles and a small Cloudflare Worker for 
 | `src/data/links.ts` | Affiliate links used by `/go/<slug>` |
 | `src/data/rates.ts` | Health insurance rates, their sources and next year's planned values. **Update every January**, then run `npm test`. |
 | `src/lib/gkv.ts` | The health insurance calculation, shared by the calculator widget and the calculator page |
+| `src/data/income-tax.ts` | Income tax tariff and thresholds for the prepayment estimator. **Update every January**, then run `npm test`. |
 | `src/data/calculators.ts` | Calculator cards on the homepage |
 | `src/components/` | Design components (see below) |
 | `src/layouts/` | Base, article and simple text page layouts |

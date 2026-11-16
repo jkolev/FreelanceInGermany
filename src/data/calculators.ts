@@ -14,6 +14,12 @@ export const calculators: Calculator[] = [
     href: '/calculators/health-insurance-cost',
   },
   {
+    title: 'Tax prepayments: how much to set aside?',
+    description: 'Your estimated income tax for the year and the quarterly amount, from your expected profit.',
+    topic: 'Taxes',
+    href: '/taxes/tax-prepayments',
+  },
+  {
     title: 'What’s left after tax and insurance?',
     description: 'From your yearly profit to your real monthly income, step by step.',
     topic: 'Taxes',

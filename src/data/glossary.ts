@@ -114,6 +114,8 @@ export const glossary: Record<string, GlossaryEntry> = {
   BZSt: { en: 'Federal Central Tax Office, which issues tax IDs and VAT IDs' },
   Solidaritätszuschlag: { en: 'solidarity surcharge of 5.5% of income tax, charged only above a high threshold' },
   'Reverse-Charge-Verfahren': { en: 'reverse charge: the business client, not you, accounts for the VAT' },
+  Regelbeitrag: { en: 'standard monthly pension contribution for self-employed people who must pay into the public pension' },
+  Basisrente: { en: 'state-supported private pension, also called Rürup pension; contributions are tax-deductible within a yearly limit' },
 };
 
 export const glossaryId = (term: string) =>

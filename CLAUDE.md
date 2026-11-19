@@ -4,7 +4,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Static Astro 7 site (Tailwind 4, MDX) for English-speaking freelancers in Germany, deployed to Cloudflare Workers with a
 small Worker for affiliate redirects and the contact form. See `README.md` for the launch checklist and article
-component examples, and `docs/ARTICLES.md` for the article plan and per-article requirements.
+component examples, `docs/ARTICLES.md` for the article plan and per-article requirements, and `docs/TODO.md` for dated fact
+rechecks (pending laws, the January data switch) and open site tasks.
 
 ## Commands
 

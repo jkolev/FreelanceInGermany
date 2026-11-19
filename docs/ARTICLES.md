@@ -20,7 +20,7 @@ Status: `to write` · `draft` · `review` · `live`
 | 11 | Private health insurance: costs in old age and switching back | health-insurance | `private-costs-old-age` | cluster | Broker referrals | to write |
 | 12 | Expat health insurance: when it is accepted and when it is not | health-insurance | `expat-health-insurance` | cluster | Insurance affiliates | to write |
 | 13 | Health insurance for freelancers with a family | health-insurance | `family` | cluster | Insurance affiliates | to write |
-| 14 | Sick pay for freelancers: how to get covered | health-insurance | `sick-pay` | cluster | Insurance affiliates | to write |
+| 14 | Sick pay for freelancers: how to get covered | health-insurance | `sick-pay` | cluster | Insurance affiliates | live |
 | 15 | Best health insurance options for English speakers | health-insurance | `best-for-english-speakers` | comparison | Insurance affiliates | to write |
 | 16 | The freelance visa: residence permits for self-employment | start | `freelance-visa` | cluster | Relocation and lawyer leads | to write |
 | 17 | The small business VAT exemption (Kleinunternehmerregelung) | taxes | `kleinunternehmer` | cluster | Accounting software | live |

@@ -20,9 +20,9 @@ export const site = {
   },
   // TODO: newsletter provider form endpoint (e.g. Brevo or Buttondown)
   newsletterAction: '',
-  // Cloudflare Turnstile site key for the contact form.
-  // TODO: replace this public TEST key (always passes) with your real site key.
-  turnstileSiteKey: '1x00000000000000000000AA',
+  // Cloudflare Turnstile site key for the contact form (public; the secret is set with `wrangler secret put TURNSTILE_SECRET`).
+  // For local testing you can swap in Cloudflare's test key '1x00000000000000000000AA' (always passes).
+  turnstileSiteKey: '0x4AAAAAAGIk5Ly1NU4ARQAx',
 };
 
 export type HubId = 'health-insurance' | 'start' | 'taxes' | 'insurance' | 'banking';

@@ -70,9 +70,8 @@ Check DIP (dip.bundestag.de) for each. If a bill passed, check the final text, b
 ## Site and launch tasks (no fixed date)
 
 - [ ] **#6 tax registration questionnaire**: ELSTER screenshot, then publish (see "Open tasks" in `ARTICLES.md`).
-- [ ] **Contact form**: real Turnstile site key in `src/data/site.ts` (currently the test key), `CONTACT_TO` and
-      `CONTACT_FROM` in `wrangler.jsonc`, `npx wrangler secret put TURNSTILE_SECRET` and `BREVO_API_KEY`. Or hide the
-      contact page until then.
+- [ ] **Contact form**: configured 2026-11-19 (site key, both secrets, addresses). Send a test message through the
+      live form after the next deploy; if it fails, check the Worker logs in the Cloudflare dashboard for the Brevo error.
 - [ ] **Empty hubs** (insurance, banking): add `noindex` or hide them until they have articles.
 - [ ] **Search engines**: Google Search Console and Bing Webmaster Tools, submit `sitemap-index.xml`.
 - [ ] **Affiliate programs**: apply for accounting software and business banks before writing #8 and #7.

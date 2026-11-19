@@ -16,9 +16,9 @@
   "ratelimits": [{ "name": "CONTACT_LIMITER", "namespace_id": "1001", "simple": { "limit": 5, "period": 60 } }],
   "vars": {
     "SITE_NAME": "Freelance in Germany",
-    // TODO: your inbox, and a sender address verified in Brevo
-    "CONTACT_TO": "you@example.com",
-    "CONTACT_FROM": "no-reply@example.com"
+    // Inbox for contact form messages, and the sender on the domain authenticated in Brevo
+    "CONTACT_TO": "j.kolev@outlook.com",
+    "CONTACT_FROM": "contact@freelancegermany.com"
   },
   // Secrets (never in this file): npx wrangler secret put TURNSTILE_SECRET / BREVO_API_KEY
   "observability": { "enabled": true }

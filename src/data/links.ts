@@ -21,6 +21,11 @@ export const affiliateLinks: Record<string, AffiliateLink> = {
     // so per-article stats come from the Analytics Engine click data only.
     url: 'https://www.accountable.de/en/r/?ref=mzi1zmu',
   },
+  norman: {
+    merchant: 'Norman',
+    // Affiliate link; tracking is in utm_campaign, so no separate sub-ID parameter
+    url: 'https://norman.finance/?utm_source=affiliate&utm_campaign=e12ae9b7',
+  },
   feather: {
     merchant: 'Feather',
     // TODO: once your application is approved, replace with your tracking link

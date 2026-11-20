@@ -17,9 +17,9 @@ export interface AffiliateLink {
 export const affiliateLinks: Record<string, AffiliateLink> = {
   accountable: {
     merchant: 'Accountable',
-    // TODO: once your application is approved, replace with your tracking link
-    // and set subIdParam to the parameter their platform uses for sub-IDs
-    url: 'https://www.accountable.de/en/',
+    // Personal referral link (referral programme, not an affiliate network): no sub-ID parameter,
+    // so per-article stats come from the Analytics Engine click data only.
+    url: 'https://www.accountable.de/en/r/?ref=mzi1zmu',
   },
   feather: {
     merchant: 'Feather',

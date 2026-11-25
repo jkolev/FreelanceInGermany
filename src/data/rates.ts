@@ -1,6 +1,6 @@
 /**
  * Public health insurance (GKV) values for self-employed members.
- * Update every January. Last checked: 2026-11-01 (values for 2026).
+ * Update every January. Last checked: 2026-11-25 (values for 2026; 2027 preview in gkvNext).
  * Sources: `gkvSources` below. Check them when updating; the calculator page lists them too.
  */
 export const gkvSources: { label: string; href: string }[] = [
@@ -55,7 +55,7 @@ export interface GkvRates {
 
 export const gkv: GkvRates = {
   year: 2026,
-  lastChecked: '2026-11-01',
+  lastChecked: '2026-11-25',
   bezugsgroesse: 3955,
   minBase: 1318.33,
   maxBase: 5812.5,
@@ -72,15 +72,16 @@ export const gkv: GkvRates = {
 };
 
 /**
- * PLANNED values for 2027, not final. Used only for the "What changes in 2027" section.
- * Cap: cabinet decision of 12 Oct 2026. Bezugsgröße: draft ordinance.
- * The average additional rate is the estimate of the Schätzerkreis; the official figure is published in November 2026.
+ * Values for 2027. Used only for the "What changes in 2027" section until the January switch.
+ * Cap and Bezugsgröße: Sozialversicherungsrechengrößen-Verordnung 2027, approved by the Bundesrat on 20 Nov 2026
+ * (BR-Drs. 576/26), in force from 1 Jan 2027.
+ * Average additional rate: set by the health ministry on 30 Oct 2026 (2.9%, unchanged).
  * Long-term care changes for 2027 are still being decided, so they are left out on purpose.
  * Replace this block with a real GkvRates object once everything is final, then switch `gkv` to it in January.
  */
 export const gkvNext = {
   year: 2027,
-  status: 'planned' as const,
+  status: 'set' as const,
   bezugsgroesse: 4130,
   minBase: 1376.67,
   maxBase: 6375,

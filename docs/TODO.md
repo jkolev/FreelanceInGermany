@@ -4,17 +4,13 @@ Things to check, update or verify later, by date. Tick items off when done, and 
 whose facts you re-checked. Fact changes follow the usual rule: confirm against a primary source (law text, BGBl.,
 Bundestag/Bundesrat documents, official bodies) before publishing.
 
-## After 20 November 2026: Bundesrat session
+## After 20 November 2026: Bundesrat session (done 2026-11-25)
 
-- [ ] **2027 social insurance figures** (Sozialversicherungsrechengrößen-Verordnung 2027, Bundesrat Drucksache 576/26).
-      Check that the Bundesrat approved it, and later that it was published in the BGBl.
-  - [ ] `freelancer-numbers.mdx`: status row "Adopted by the cabinet … The Bundesrat votes on 20 November", plus
-        "planned" in the short answer, the FAQ and the pension table heading.
-  - [ ] `src/data/rates.ts` → `gkvNext`: replace the comment "Bezugsgröße: draft ordinance" and "the official figure is
-        published in November 2026" (the 2.9% average rate is official since 30 October 2026).
-  - [ ] `health-insurance/public-cost.mdx` and `health-insurance/freelancers.mdx`: any "planned 2027" wording.
-  - [ ] `health-insurance/sick-pay.mdx`: "planned at €6,375 … €148.75 a day. The Bundesrat votes…".
-- [ ] **Care reform** (Pflegeneuordnungsgesetz): Bundesrat first round only, no decision expected. Note its opinion.
+- [x] **2027 social insurance figures** approved by the Bundesrat on 20 November 2026 (BR-Drs. 576/26 Beschluss).
+      Updated freelancer-numbers, sick-pay, health-insurance/freelancers, public-cost, the calculator page and
+      `rates.ts` (`gkvNext`).
+  - [ ] Optional: once published in the BGBl., add the citation as a source on freelancer-numbers.
+- [ ] **Care reform** (Pflegeneuordnungsgesetz): note the Bundesrat's first-round opinion of 20 November (no decision).
 
 ## December 2026: bills that should pass before 1 January
 

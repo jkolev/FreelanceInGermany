@@ -12,8 +12,8 @@ Status: `to write` · `draft` · `review` · `live`
 | 3 | How much public health insurance costs freelancers (with calculator) | health-insurance | `public-cost` | tool | Insurance affiliates | live |
 | 4 | How to become a freelancer in Germany: step by step | start | `become-a-freelancer` | pillar | Banking, accounting software | live |
 | 5 | Freiberufler vs. Gewerbe: which one are you? | start | `freiberufler-vs-gewerbe` | cluster | Accounting software | live |
-| 6 | Getting your tax number: the tax registration questionnaire in English | start | `tax-registration-questionnaire` | cluster | Accounting software, tax advisor leads | review |
-| 7 | Best business bank accounts for freelancers | banking | `business-bank-accounts` | comparison | Bank affiliates | to write |
+| 6 | Getting your tax number: the tax registration questionnaire in English | start | `tax-registration-questionnaire` | cluster | Accounting software, tax advisor leads | live |
+| 7 | Best business bank accounts for freelancers | banking | `business-bank-accounts` | comparison | Bank affiliates | live |
 | 8 | Best accounting software for freelancers in English | taxes | `accounting-software` | comparison | Accounting software | live |
 | 9 | Taxes for freelancers in Germany: the complete guide | taxes | `freelancer-taxes` | pillar | Tax software, tax advisor leads | live |
 | 10 | Freelancer numbers: every threshold and rate for the coming year | — | page `/freelancer-numbers` | yearly page | Links into all hubs | live |
@@ -50,7 +50,7 @@ Status: `to write` · `draft` · `review` · `live`
 
 ## Open tasks
 
-### Screenshots for #6 (tax registration questionnaire)
+### Screenshots for #6 (tax registration questionnaire) — optional, article published without them
 
 Take them yourself in Mein ELSTER rather than reusing images from other sites (copyright, outdated layouts). You can
 open the form and capture the screens without submitting anything. Black out personal data (name, tax ID, address)
@@ -58,7 +58,7 @@ before saving. Save under `src/assets/elster/` and add them with `<Figure>` or `
 the German fields).
 
 - [ ] **Required:** Mein ELSTER → Formulare & Leistungen → Alle Formulare, with "Fragebogen zur steuerlichen Erfassung"
-      visible. Replaces the `{/* IMAGE */}` placeholder in the "How do you submit it?" section.
+      visible. Goes after the step list in the "How do you submit it?" section (the placeholder was removed at publication).
       Save as `src/assets/elster/alle-formulare.png`.
 - [ ] Optional: the form for sole proprietors (Einzelunternehmen), sections "Art der Tätigkeit" / "Beginn der
       Tätigkeit", for the "Your activity and start date" section.

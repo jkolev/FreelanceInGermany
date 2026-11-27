@@ -65,7 +65,7 @@ export const glossary: Record<string, GlossaryEntry> = {
   Gewerbesteuer: { en: 'trade tax, charged by your city on the profit of a trade business', href: '/start/freiberufler-vs-gewerbe' },
   Hebesatz: { en: 'your city’s trade tax multiplier, which sets how much trade tax you pay' },
   Einnahmenüberschussrechnung: { en: 'simple profit calculation: income minus expenses, without double-entry bookkeeping' },
-  'Fragebogen zur steuerlichen Erfassung': { en: 'tax registration questionnaire you file in ELSTER when you start self-employed work' },
+  'Fragebogen zur steuerlichen Erfassung': { en: 'tax registration questionnaire you file in ELSTER when you start self-employed work', href: '/start/tax-registration-questionnaire' },
   Gewerbeamt: { en: 'trade office of your city or district, where a trade business is registered' },
   'Bundeszentralamt für Steuern': { en: 'Federal Central Tax Office (BZSt)' },
   Einzelunternehmen: { en: 'sole proprietorship' },
@@ -73,7 +73,7 @@ export const glossary: Record<string, GlossaryEntry> = {
   Istversteuerung: { en: 'paying VAT only on payments received' },
   Kirchensteuer: { en: 'church tax for members of some religious communities' },
   Kleinunternehmerregelung: { en: 'small business VAT exemption', href: '/taxes/kleinunternehmer' },
-  Sollversteuerung: { en: 'paying VAT on invoices you issue' },
+  Sollversteuerung: { en: 'paying VAT for the period in which you do the work, the default method' },
   Steueridentifikationsnummer: { en: 'personal 11-digit tax ID from the BZSt' },
   Steuervorauszahlung: { en: 'income tax paid in advance during the year' },
   Umsatz: { en: 'turnover, the total you invoice' },
@@ -120,6 +120,9 @@ export const glossary: Record<string, GlossaryEntry> = {
   Arbeitsunfähigkeitsbescheinigung: { en: 'doctor’s certificate that you are unable to work' },
   Berufsunfähigkeit: { en: 'long-term inability to work in your profession' },
   Progressionsvorbehalt: { en: 'rule by which tax-free benefits such as Krankengeld raise the tax rate on your other income' },
+  Girokonto: { en: 'current account at a bank, used for everyday payments' },
+  Geschäftskonto: { en: 'business bank account', href: '/banking/business-bank-accounts' },
+  Einlagensicherung: { en: 'deposit guarantee: bank deposits protected up to €100,000 per customer and bank' },
 };
 
 export const glossaryId = (term: string) =>

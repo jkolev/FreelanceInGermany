@@ -65,12 +65,22 @@ Check DIP (dip.bundestag.de) for each. If a bill passed, check the final text, b
 
 ## Site and launch tasks (no fixed date)
 
-- [ ] **#6 tax registration questionnaire**: ELSTER screenshot, then publish (see "Open tasks" in `ARTICLES.md`).
+- [ ] **#6 tax registration questionnaire**: published 2026-11-27 without screenshots. Optional: add the ELSTER
+      screenshot later (see "Open tasks" in `ARTICLES.md`).
 - [ ] **Contact form**: configured 2026-11-19 (site key, both secrets, addresses). Send a test message through the
       live form after the next deploy; if it fails, check the Worker logs in the Cloudflare dashboard for the Brevo error.
 - [ ] **Empty hubs** (insurance, banking): add `noindex` or hide them until they have articles.
 - [ ] **Search engines**: Google Search Console and Bing Webmaster Tools, submit `sitemap-index.xml`.
-- [ ] **Affiliate programs**: apply for accounting software and business banks before writing #8 and #7.
+- [ ] **Affiliate programs** (Accountable and Norman done). Join the ones mentioned in published comparisons, then send
+      the links so they can go into `src/data/links.ts` and get provider cards:
+  - [ ] Kontist (business account and tax service) — `banking/business-bank-accounts`, `taxes/accounting-software`
+  - [ ] Qonto — `banking/business-bank-accounts`
+  - [ ] Finom — `banking/business-bank-accounts`
+  - [ ] N26 Business — `banking/business-bank-accounts`
+  - [ ] sevdesk — `taxes/accounting-software`
+  - [ ] Sorted — `taxes/accounting-software`
+  - [ ] Optional, for the "Other options" section: Holvi, FYRST, Revolut Business, Wise Business
+  - [ ] Feather (insurance) — `health-insurance/public-vs-private` (`/go/feather` still points to the plain homepage)
 - [ ] **Newsletter**: choose a provider and set `newsletterAction` in `src/data/site.ts` (the signup is hidden until
       then).
 - [ ] **Author photo**: add `src/assets/author.jpg` (see the comment in `src/data/site.ts`).

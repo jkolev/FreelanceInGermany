@@ -57,6 +57,9 @@ Check DIP (dip.bundestag.de) for each. If a bill passed, check the final text, b
 
 ## Later in 2027
 
+- [ ] **July 2027**: Berlin usually updates its pension figures for permit applicants over 45 on 1 July; check
+      `start/freelance-visa.mdx` (currently €1,612.53 a month or €232,204, valid since 1 July 2025). Also check the
+      fees in §§ 45, 46 AufenthV.
 - [ ] **August 2027**: move the filing-deadline examples to the 2027 tax year (see above).
 - [ ] **Autumn 2027**: `freelancer-numbers.mdx` becomes the 2028 page: new title, columns 2027 | 2028, new
       cabinet figures (social insurance in October, health ministry average rate by 1 November).

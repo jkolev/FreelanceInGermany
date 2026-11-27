@@ -22,7 +22,7 @@ Status: `to write` · `draft` · `review` · `live`
 | 13 | Health insurance for freelancers with a family | health-insurance | `family` | cluster | Insurance affiliates | to write |
 | 14 | Sick pay for freelancers: how to get covered | health-insurance | `sick-pay` | cluster | Insurance affiliates | live |
 | 15 | Best health insurance options for English speakers | health-insurance | `best-for-english-speakers` | comparison | Insurance affiliates | to write |
-| 16 | The freelance visa: residence permits for self-employment | start | `freelance-visa` | cluster | Relocation and lawyer leads | to write |
+| 16 | The freelance visa: residence permits for self-employment | start | `freelance-visa` | cluster | Relocation and lawyer leads | live |
 | 17 | The small business VAT exemption (Kleinunternehmerregelung) | taxes | `kleinunternehmer` | cluster | Accounting software | live |
 | 18 | How to write a German invoice (with free template) | taxes | `invoice` | cluster | Accounting software, email signups | live |
 | 19 | VAT returns explained (Umsatzsteuervoranmeldung) | taxes | `vat-returns` | cluster | Accounting software | live |

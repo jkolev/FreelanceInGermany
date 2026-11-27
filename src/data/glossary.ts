@@ -123,6 +123,10 @@ export const glossary: Record<string, GlossaryEntry> = {
   Girokonto: { en: 'current account at a bank, used for everyday payments' },
   Geschäftskonto: { en: 'business bank account', href: '/banking/business-bank-accounts' },
   Einlagensicherung: { en: 'deposit guarantee: bank deposits protected up to €100,000 per customer and bank' },
+  Aufenthaltserlaubnis: { en: 'residence permit, issued for a specific purpose such as work, study or self-employment' },
+  Niederlassungserlaubnis: { en: 'settlement permit: permanent residence in Germany' },
+  Chancenkarte: { en: 'opportunity card: a residence permit for looking for work, which does not allow self-employment' },
+  'Blaue Karte EU': { en: 'EU Blue Card, a residence permit for highly qualified employees' },
 };
 
 export const glossaryId = (term: string) =>
